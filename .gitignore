@@ -1,0 +1,28 @@
+# 微信小程序
+miniprogram_npm/
+node_modules/
+
+# 日志文件
+*.log
+npm-debug.log*
+
+# 编辑器
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.temp
+
+# 云函数
+cloudfunctions/**/node_modules/
+cloudfunctions/**/.DS_Store
+
+# 配置文件（可能包含敏感信息）
+project.private.config.json

@@ -1,0 +1,114 @@
+<!--pages/admin/admin.axml-->
+<view class="container">
+  <!-- 统计卡片 -->
+  <view class="stats-grid">
+    <view class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+      <text class="stat-value">{{stats.totalApplications}}</text>
+      <text class="stat-label">总计划数</text>
+    </view>
+    <view class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+      <text class="stat-value">{{stats.pendingReview}}</text>
+      <text class="stat-label">待评估</text>
+    </view>
+    <view class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+      <text class="stat-value">{{stats.inTraining}}</text>
+      <text class="stat-label">学习中</text>
+    </view>
+    <view class="stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+      <text class="stat-value">{{stats.qualified}}</text>
+      <text class="stat-label">已达标</text>
+    </view>
+  </view>
+
+  <!-- 快速入口 -->
+  <view class="card">
+    <view class="card-title">快速入口</view>
+    <view class="quick-actions">
+      <view class="action-item" onTap="goToPage" data-url="/pages/admin/applications/applications">
+        <view class="action-icon" style="background: #1890ff;">📋</view>
+        <text class="action-text">计划管理</text>
+      </view>
+      <view class="action-item" onTap="goToPage" data-url="/pages/admin/interviews/interviews" a:if="{{userRole === 'workshop_leader'}}">
+        <view class="action-icon" style="background: #52c41a;">💬</view>
+        <text class="action-text">评估评分</text>
+      </view>
+      <view class="action-item" onTap="goToPage" data-url="/pages/admin/videos/videos" a:if="{{userRole === 'safety_admin'}}">
+        <view class="action-icon" style="background: #fa8c16;">🎓</view>
+        <text class="action-text">资源管理</text>
+      </view>
+      <view class="action-item" onTap="goToPage" data-url="/pages/admin/questions/questions" a:if="{{userRole === 'safety_admin'}}">
+        <view class="action-icon" style="background: #13c2c2;">📚</view>
+        <text class="action-text">分发管理</text>
+      </view>
+      <view class="action-item" onTap="goToPage" data-url="/pages/admin/exams/exams" a:if="{{userRole === 'safety_admin'}}">
+        <view class="action-icon" style="background: #722ed1;">📝</view>
+        <text class="action-text">测试管理</text>
+      </view>
+      <view class="action-item" onTap="goToPage" data-url="/pages/admin/members/members" a:if="{{userRole === 'safety_admin'}}">
+        <view class="action-icon" style="background: #391085;">👥</view>
+        <text class="action-text">成员管理</text>
+      </view>
+      <view class="action-item" onTap="exportData">
+        <view class="action-icon" style="background: #eb2f96;">📊</view>
+        <text class="action-text">数据导出</text>
+      </view>
+      <view class="action-item" onTap="syncCredamo" a:if="{{userRole === 'safety_admin'}}">
+        <view class="action-icon" style="background: #f5a623;">🔄</view>
+        <text class="action-text">同步培训</text>
+      </view>
+      <view class="action-item" onTap="testCredamoCookie" a:if="{{userRole === 'safety_admin'}}">
+        <view class="action-icon" style="background: {{cookieStatus === 'ok' ? '#52c41a' : cookieStatus === 'error' ? '#f5222d' : '#13c2c2'}};">🔑</view>
+        <text class="action-text">Cookie{{cookieStatus === 'ok' ? '✓' : cookieStatus === 'error' ? '✗' : ''}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Credamo 同步进度 -->
+  <view class="card" a:if="{{syncStatus}}">
+    <view class="card-title">Credamo 培训同步</view>
+    <view style="padding: 12rpx 0; font-size: 28rpx; color: {{syncDone ? '#52c41a' : '#1890ff'}};">
+      {{syncStatus}}
+    </view>
+    <view a:if="{{syncTotal > 0}}" style="margin-top: 12rpx;">
+      <view style="background: #f0f0f0; border-radius: 8rpx; height: 12rpx; overflow: hidden;">
+        <view style="background: #1890ff; height: 100%; width: {{syncProgress}}%; transition: width 0.3s;"></view>
+      </view>
+      <view style="font-size: 24rpx; color: #999; margin-top: 8rpx;">{{syncSaved}} / {{syncTotal}} 条已保存</view>
+    </view>
+  </view>
+
+  <!-- 待办事项 -->
+  <view class="card">
+    <view class="card-title">待办事项</view>
+    <view class="todo-list">
+      <view class="todo-item" a:for="{{todos}}" a:key="id" onTap="handleTodo" data-id="{{item.id}}">
+        <view class="todo-dot {{item.priority}}"></view>
+        <view class="todo-content">
+          <text class="todo-title">{{item.title}}</text>
+          <text class="todo-desc">{{item.desc}}</text>
+        </view>
+        <view class="todo-count">{{item.count}}</view>
+      </view>
+    </view>
+    <view class="empty-state" a:if="{{todos.length === 0}}">
+      <text class="empty-text">暂无待办事项</text>
+    </view>
+  </view>
+
+  <!-- 最近活动 -->
+  <view class="card">
+    <view class="card-title">最近活动</view>
+    <view class="activity-list">
+      <view class="activity-item" a:for="{{activities}}" a:key="id">
+        <view class="activity-time">{{item.time}}</view>
+        <view class="activity-content">
+          <text class="activity-title">{{item.title}}</text>
+          <text class="activity-desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="empty-state" a:if="{{activities.length === 0}}">
+      <text class="empty-text">暂无活动记录</text>
+    </view>
+  </view>
+</view>

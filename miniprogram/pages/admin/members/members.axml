@@ -1,0 +1,71 @@
+<!--pages/admin/members/members.axml-->
+<view class="container">
+  <!-- 头部搜索和添加 -->
+  <view class="header-section">
+    <view class="search-bar">
+      <icon type="search" size="18" color="#999" />
+      <input placeholder="搜索姓名/手机号" onInput="onSearchInput" value="{{searchQuery}}" />
+    </view>
+    <button class="btn-add" onTap="showAddModal">添加成员</button>
+  </view>
+
+  <!-- 列表部分 -->
+  <view class="user-list">
+    <view class="user-item" a:for="{{filteredUsers}}" a:key="_id">
+      <view class="user-info">
+        <view class="user-main">
+          <text class="user-name">{{item.name}}</text>
+          <text class="user-role-badge {{item.role}}">{{roleTextMap[item.role]}}</text>
+        </view>
+        <view class="user-details">
+          <text class="user-phone">📱 {{item.phone}}</text>
+          <text class="user-workshop" a:if="{{item.workshop_name}}">🏢 {{item.workshop_name}}</text>
+        </view>
+      </view>
+      <view class="user-actions">
+        <button class="btn-action edit" size="mini" onTap="showEditModal" data-user="{{item}}">编辑</button>
+        <button class="btn-action delete" size="mini" onTap="handleDelete" data-id="{{item._id}}" data-name="{{item.name}}">删除</button>
+      </view>
+    </view>
+
+    <view class="empty-state" a:if="{{filteredUsers.length === 0}}">
+      <text>暂无匹配成员</text>
+    </view>
+  </view>
+
+  <!-- 编辑/添加弹窗 -->
+  <view class="modal-mask" a:if="{{showModal}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text>{{isEdit ? '编辑成员' : '添加成员'}}</text>
+        <text class="close-icon" onTap="hideModal">×</text>
+      </view>
+      <view class="modal-body">
+        <view class="form-item">
+          <text class="label">姓名</text>
+          <input placeholder="请输入姓名" onInput="onModalInput" data-field="name" value="{{formData.name}}" />
+        </view>
+        <view class="form-item">
+          <text class="label">手机号</text>
+          <input placeholder="请输入手机号" type="number" maxlength="11" onInput="onModalInput" data-field="phone" value="{{formData.phone}}" disabled="{{isEdit}}" />
+        </view>
+        <view class="form-item">
+          <text class="label">身份角色</text>
+          <picker range="{{roleOptions}}" range-key="label" onChange="onRoleChange">
+            <view class="picker-val">{{roleOptions[roleIndex].label || '请选择角色'}}</view>
+          </picker>
+        </view>
+        <view class="form-item" a:if="{{formData.role === 'workshop_leader' || formData.role === 'applicant'}}">
+          <text class="label">所属车间</text>
+          <picker range="{{workshopOptions}}" range-key="name" onChange="onWorkshopChange">
+            <view class="picker-val">{{workshopOptions[workshopIndex].name || '请选择车间'}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <button class="btn-cancel" onTap="hideModal">取消</button>
+        <button class="btn-confirm" onTap="handleSubmit">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

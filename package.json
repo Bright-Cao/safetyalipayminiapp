@@ -1,0 +1,19 @@
+{
+  "name": "guardian-training-platform",
+  "version": "1.0.0",
+  "description": "铁前总厂监护人培训与考核平台",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "alipay",
+    "miniprogram",
+    "training",
+    "exam"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}

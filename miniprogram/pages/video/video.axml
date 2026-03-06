@@ -1,0 +1,71 @@
+<!--pages/video/video.axml-->
+<view class="container">
+
+  <!-- 视频播放器区域 -->
+  <view class="player-wrap">
+    <video
+      id="myVideo"
+      class="video-player"
+      src="{{videoSrc}}"
+      initial-time="{{resumeTime}}"
+      show-progress="{{false}}"
+      show-fullscreen-btn="{{true}}"
+      show-play-btn="{{true}}"
+      show-center-play-btn="{{true}}"
+      controls="{{false}}"
+      enable-progress-gesture="{{false}}"
+      show-casting-button="{{false}}"
+      show-screen-lock-button="{{false}}"
+      show-snapshot-button="{{false}}"
+      object-fit="contain"
+      onPlay="onPlay"
+      onPause="onPause"
+      onTimeUpdate="onTimeUpdate"
+      onEnded="onEnded"
+      onError="onVideoError"
+    />
+
+    <!-- 自定义进度条覆盖层（只显示不可拖拽） -->
+    <view class="progress-overlay">
+      <view class="progress-bar-bg">
+        <view class="progress-bar-fill" style="width: {{progressPct}}%;"></view>
+      </view>
+      <view class="progress-text">{{currentTimeText}} / {{durationText}}</view>
+    </view>
+
+    <!-- 禁止拖拽提示 -->
+    <view class="no-seek-tip" a:if="{{showSeekTip}}">请按顺序完整观看</view>
+
+    <!-- 加载中 -->
+    <view class="loading-mask" a:if="{{!videoSrc}}">
+      <text class="loading-text">视频加载中...</text>
+    </view>
+  </view>
+
+  <!-- 视频信息 -->
+  <view class="info-card">
+    <view class="video-title">{{videoTitle}}</view>
+    <view class="video-desc" a:if="{{videoDescription}}">{{videoDescription}}</view>
+
+    <!-- 进度状态 -->
+    <view class="status-row">
+      <view class="status-tag {{isCompleted ? 'completed' : (watchedPct > 0 ? 'watching' : 'pending')}}">
+        <text a:if="{{isCompleted}}">✓ 已完成</text>
+        <text a:elif="{{watchedPct > 0}}">学习中 {{watchedPct}}%</text>
+        <text a:else>未开始</text>
+      </view>
+    </view>
+
+    <!-- 完成提示 -->
+    <view class="complete-tip" a:if="{{isCompleted}}">
+      🎉 本视频已完成，已记录学习档案
+    </view>
+  </view>
+
+  <!-- 说明 -->
+  <view class="tip-card">
+    <text class="tip-icon">ℹ️</text>
+    <text class="tip-text">请完整观看视频（≥90%）系统才会自动标记完成，进度条不支持手动拖拽。</text>
+  </view>
+
+</view>

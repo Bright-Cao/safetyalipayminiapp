@@ -1,0 +1,9 @@
+{
+    "name": "exportExcel",
+    "version": "1.0.0",
+    "description": "导出数据到Excel",
+    "main": "index.js",
+    "dependencies": {
+        "node-xlsx": "^0.21.0"
+    }
+}

@@ -1,0 +1,87 @@
+<!--pages/profile/profile.wxml-->
+<view class="container">
+  <!-- 用户信息 -->
+  <view class="profile-header">
+    <view class="avatar-section">
+      <image class="avatar" src="{{userInfo.avatar || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2U4ZThlOCIvPjx0ZXh0IHg9IjUwIiB5PSI2MCIgZm9udC1zaXplPSI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzk5OSI+8J+RpDwvdGV4dD48L3N2Zz4='}}" mode="aspectFill"></image>
+      <view class="user-info">
+        <text class="user-name">{{userInfo.name || '未设置姓名'}}</text>
+        <text class="user-role">{{roleText}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 认证状态 -->
+  <view class="card" a:if="{{userRole === 'applicant'}}">
+    <view class="cert-status">
+      <view class="status-icon {{certStatus === 'qualified' ? 'qualified' : 'unqualified'}}">
+        {{certStatus === 'qualified' ? '✓' : '○'}}
+      </view>
+      <view class="status-info">
+        <text class="status-title">{{certStatusText}}</text>
+        <text class="status-desc">{{certStatusDesc}}</text>
+      </view>
+      <view class="status-action" a:if="{{certStatus === 'qualified'}}" onTap="viewCertificate">
+        <text>查看证书</text>
+        <text class="arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="card">
+    <view class="menu-list">
+      <view class="menu-item" onTap="goToPage" data-url="/pages/result/result" a:if="{{userRole === 'applicant'}}">
+        <view class="menu-icon" style="background: #1890ff;">🏆</view>
+        <text class="menu-text">我的证书</text>
+        <text class="menu-arrow">›</text>
+      </view>
+
+      <view class="menu-item" onTap="goToPage" data-url="/pages/admin/admin" a:if="{{userRole !== 'applicant'}}">
+        <view class="menu-icon" style="background: #52c41a;">📊</view>
+        <text class="menu-text">管理后台</text>
+        <text class="menu-arrow">›</text>
+      </view>
+
+      <view class="menu-item" onTap="showAbout">
+        <view class="menu-icon" style="background: #722ed1;">ℹ️</view>
+        <text class="menu-text">关于我们</text>
+        <text class="menu-arrow">›</text>
+      </view>
+
+      <view class="menu-item" onTap="showHelp">
+        <view class="menu-icon" style="background: #fa8c16;">❓</view>
+        <text class="menu-text">帮助中心</text>
+        <text class="menu-arrow">›</text>
+      </view>
+
+      <view class="menu-item" onTap="contactService">
+        <view class="menu-icon" style="background: #13c2c2;">📞</view>
+        <text class="menu-text">联系客服</text>
+        <text class="menu-arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 设置 -->
+  <view class="card">
+    <view class="menu-list">
+      <view class="menu-item" onTap="clearCache">
+        <view class="menu-icon" style="background: #999;">🗑️</view>
+        <text class="menu-text">清除缓存</text>
+        <text class="menu-value">{{cacheSize}}</text>
+      </view>
+
+      <view class="menu-item" onTap="checkUpdate">
+        <view class="menu-icon" style="background: #1890ff;">🔄</view>
+        <text class="menu-text">检查更新</text>
+        <text class="menu-value">{{version}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class="logout-area">
+    <button class="btn-logout" onTap="handleLogout">退出登录</button>
+  </view>
+</view>

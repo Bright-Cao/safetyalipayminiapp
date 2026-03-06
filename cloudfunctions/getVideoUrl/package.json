@@ -1,0 +1,7 @@
+{
+    "name": "get-video-url",
+    "version": "1.0.0",
+    "description": "获取云存储视频临时播放链接",
+    "main": "index.js",
+    "dependencies": {}
+}

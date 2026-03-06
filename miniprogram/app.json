@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/apply/apply",
+    "pages/interview/interview",
+    "pages/training/training",
+    "pages/video/video",
+    "pages/exam/exam",
+    "pages/result/result",
+    "pages/check/check",
+    "pages/admin/admin",
+    "pages/admin/applications/applications",
+    "pages/admin/interview/interview",
+    "pages/admin/videos/videos",
+    "pages/admin/questions/questions",
+    "pages/admin/members/members",
+    "pages/practice/practice",
+    "pages/practice-detail/practice-detail",
+    "pages/profile/profile",
+    "pages/setup/setup"
+  ],
+  "window": {
+    "titleBarColor": "#1890ff",
+    "defaultTitle": "铁前安全培训小助手",
+    "backgroundColor": "#f5f5f5"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#1890ff",
+    "backgroundColor": "#ffffff",
+    "items": [
+      {
+        "pagePath": "pages/index/index",
+        "name": "首页"
+      },
+      {
+        "pagePath": "pages/check/check",
+        "name": "查询"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "name": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

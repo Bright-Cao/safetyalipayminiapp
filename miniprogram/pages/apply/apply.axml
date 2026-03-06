@@ -1,0 +1,296 @@
+<!--pages/apply/apply.wxml-->
+<view class="container">
+  <view class="card">
+    <view class="card-title">{{categoryList[categoryIndex].name}}计划发起</view>
+    <view class="card-content">
+      <text class="tip" a:if="{{formData.category === 'guardian'}}">请填写以下信息，通过审核后将进入测评与自测流程</text>
+      <text class="tip" a:elif="{{formData.category === 'team_leader'}}">请填写以下信息，通过审核后将参加综合水平测评</text>
+      <text class="tip" a:else>请填写以下信息，通过后将参加水平评估</text>
+    </view>
+  </view>
+
+  <!-- 类型选择 -->
+  <view class="card">
+    <view class="section-title">选择级别分类</view>
+    <view class="category-selector">
+      <view 
+        class="category-item {{formData.category === item.id ? 'active' : ''}}" 
+        a:for="{{categoryList}}" 
+        a:key="id"
+        onTap="onCategoryChange"
+        data-category="{{item.id}}"
+      >
+        <text class="category-name">{{item.name}}</text>
+        <text class="category-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <form onSubmit="handleSubmit">
+    <view class="card">
+      <view class="section-title">基本信息</view>
+      
+      <view class="form-item">
+        <text class="form-label">姓名 <text class="required">*</text></text>
+        <input class="form-input" name="name" placeholder="请输入真实姓名" value="{{formData.name}}" onInput="onInput" data-field="name" />
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">类型 <text class="required">*</text></text>
+        <radio-group name="applicantType" onChange="onRadioChange" data-field="applicantType">
+          <label class="radio-item">
+            <radio value="internal" checked="{{formData.applicantType === 'internal'}}" />本厂
+          </label>
+          <label class="radio-item">
+            <radio value="contractor" checked="{{formData.applicantType === 'contractor'}}" />协作
+          </label>
+        </radio-group>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">单位 <text class="required">*</text></text>
+        <input class="form-input" name="company" placeholder="请输入所属单位/协作单位" value="{{formData.company}}" onInput="onInput" data-field="company" />
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">所属分类 <text class="required">*</text></text>
+        <picker mode="selector" range="{{workshops}}" range-key="name" onChange="onWorkshopChange" value="{{workshopIndex}}">
+          <view class="picker-input">
+            {{formData.workshop || '请选择所属分类'}}
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">是否签署相关协议 <text class="required">*</text></text>
+        <radio-group name="contractSigned" onChange="onRadioChange" data-field="contractSigned">
+          <label class="radio-item">
+            <radio value="yes" checked="{{formData.contractSigned === 'yes'}}" />是
+          </label>
+          <label class="radio-item">
+            <radio value="no" checked="{{formData.contractSigned === 'no'}}" />否
+          </label>
+        </radio-group>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">年龄 <text class="required">*</text></text>
+        <input class="form-input" name="age" type="number" placeholder="请输入年龄 (20-退休)" value="{{formData.age}}" onInput="onInput" data-field="age" />
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">手机 <text class="required">*</text></text>
+        <input class="form-input" name="phone" type="number" placeholder="请输入联系方式" value="{{formData.phone}}" onInput="onInput" data-field="phone" />
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">身份证号 <text class="required">*</text></text>
+        <input class="form-input" name="idCard" type="idcard" placeholder="请输入身份证号" value="{{formData.idCard}}" onInput="onInput" data-field="idCard" />
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">性别 <text class="required">*</text></text>
+        <radio-group name="gender" onChange="onRadioChange" data-field="gender">
+          <label class="radio-item">
+            <radio value="male" checked="{{formData.gender === 'male'}}" />男
+          </label>
+          <label class="radio-item">
+            <radio value="female" checked="{{formData.gender === 'female'}}" />女
+          </label>
+        </radio-group>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">资历背景</view>
+      
+      <view class="form-item">
+        <text class="form-label">学历 <text class="required">*</text></text>
+        <picker mode="selector" range="{{educations}}" onChange="onEducationChange" value="{{educationIndex}}">
+          <view class="picker-input">
+            {{formData.education || '请选择学历'}}
+          </view>
+        </picker>
+        <text class="form-tip" a:if="{{formData.category === 'guardian' && formData.applicantType === 'internal'}}">本厂人员须高中及以上</text>
+        <text class="form-tip" a:elif="{{formData.category === 'guardian'}}">协作人员须初中及以上</text>
+        <text class="form-tip" a:elif="{{formData.category === 'team_leader'}}">班组长须初中及以上</text>
+        <text class="form-tip" a:else>该类别须高中及以上</text>
+      </view>
+
+      <!-- 监护人：厂龄 -->
+      <view class="form-item" a:if="{{formData.category === 'guardian'}}">
+        <text class="form-label">厂龄 <text class="required">*</text></text>
+        <input class="form-input" name="workYears" type="digit" placeholder="请输入厂龄 (≥2年)" value="{{formData.workYears}}" onInput="onInput" data-field="workYears" />
+      </view>
+
+      <!-- 安全负责人/专职安全员：安全管理工作年限 -->
+      <view class="form-item" a:if="{{formData.category === 'safety_manager' || formData.category === 'safety_officer'}}">
+        <text class="form-label">安全管理工作年限 <text class="required">*</text></text>
+        <input class="form-input" name="safetyManagementYears" type="digit" placeholder="请输入年限（≥2年）" value="{{formData.safetyManagementYears}}" onInput="onInput" data-field="safetyManagementYears" />
+      </view>
+
+      <!-- 班组长：现场管理工作年限 -->
+      <view class="form-item" a:if="{{formData.category === 'team_leader'}}">
+        <text class="form-label">现场管理工作年限 <text class="required">*</text></text>
+        <input class="form-input" name="siteManagementYears" type="digit" placeholder="请输入年限（≥1年）" value="{{formData.siteManagementYears}}" onInput="onInput" data-field="siteManagementYears" />
+      </view>
+
+      <!-- 监护员专属：是否兼任组长 -->
+      <view class="form-item" a:if="{{formData.category === 'guardian'}}">
+        <text class="form-label">是否兼任组长 <text class="required">*</text></text>
+        <radio-group name="isTeamLeader" onChange="onRadioChange" data-field="isTeamLeader">
+          <label class="radio-item">
+            <radio value="yes" checked="{{formData.isTeamLeader === 'yes'}}" />是
+          </label>
+          <label class="radio-item">
+            <radio value="no" checked="{{formData.isTeamLeader === 'no'}}" />否
+          </label>
+        </radio-group>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">专业</text>
+        <input class="form-input" name="major" placeholder="请输入专业" value="{{formData.major}}" onInput="onInput" data-field="major" />
+      </view>
+    </view>
+
+    <!-- 扩展信息：身份辅助证明 -->
+    <view class="card" a:if="{{formData.category !== 'guardian'}}">
+      <view class="section-title">身份辅助证明</view>
+      
+      <view class="form-item">
+        <text class="form-label">是否有个人保障 <text class="required">*</text></text>
+        <radio-group name="hasSocialSecurity" onChange="onRadioChange" data-field="hasSocialSecurity">
+          <label class="radio-item">
+            <radio value="yes" checked="{{formData.hasSocialSecurity === 'yes'}}" />是
+          </label>
+          <label class="radio-item">
+            <radio value="no" checked="{{formData.hasSocialSecurity === 'no'}}" />否
+          </label>
+        </radio-group>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">身份一致性确认 <text class="required">*</text></text>
+        <radio-group name="contractMatchSocialSecurity" onChange="onRadioChange" data-field="contractMatchSocialSecurity">
+          <label class="radio-item">
+            <radio value="yes" checked="{{formData.contractMatchSocialSecurity === 'yes'}}" />是
+          </label>
+          <label class="radio-item">
+            <radio value="no" checked="{{formData.contractMatchSocialSecurity === 'no'}}" />否
+          </label>
+        </radio-group>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">相关证书</view>
+      
+      <!-- 监护人的原有证书字段 -->
+      <block a:if="{{formData.category === 'guardian'}}">
+        <view class="form-item">
+          <text class="form-label">特种作业证书</text>
+          <input class="form-input" name="specialCert" placeholder="请输入证书编号（如有）" value="{{formData.specialCert}}" onInput="onInput" data-field="specialCert" />
+        </view>
+
+        <view class="form-item">
+          <text class="form-label">安全培训证书</text>
+          <input class="form-input" name="safetyCert" placeholder="请输入证书编号（如有）" value="{{formData.safetyCert}}" onInput="onInput" data-field="safetyCert" />
+        </view>
+      </block>
+
+      <!-- 已有经验附件 -->
+      <block a:else>
+        <view class="form-item">
+          <text class="form-label">证书类型 <text class="required">*</text></text>
+          <picker 
+            mode="selector" 
+            range="{{safetyCertTypes}}" 
+            range-key="name" 
+            onChange="onSafetyCertTypeChange" 
+            value="{{safetyCertTypeIndex}}"
+          >
+            <view class="picker-input">
+              {{safetyCertTypeIndex >= 0 ? safetyCertTypes[safetyCertTypeIndex].name : '请选择证书类型'}}
+            </view>
+          </picker>
+        </view>
+
+        <view class="form-item">
+          <text class="form-label">经验证明编号</text>
+          <input class="form-input" name="safetyCertNumber" placeholder="请输入相关编号" value="{{formData.safetyCertNumber}}" onInput="onInput" data-field="safetyCertNumber" />
+        </view>
+
+        <!-- 证明照片上传 -->
+        <view class="form-item">
+          <text class="form-label">证明资料照片 <text class="required">*</text></text>
+          <view class="image-upload">
+            <view class="image-list">
+              <view class="image-item" a:for="{{safetyCertImages}}" a:key="*this">
+                <image src="{{item}}" mode="aspectFill" onTap="previewImage" data-url="{{item}}" data-type="safetyCert" />
+                <view class="delete-btn" onTap="deleteImage" data-type="safetyCert" data-index="{{index}}">×</view>
+              </view>
+              <view class="upload-btn" onTap="chooseImage" data-type="safetyCert" a:if="{{safetyCertImages.length < 2}}">
+                <text class="upload-icon">+</text>
+                <text class="upload-text">上传</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class="card">
+      <view class="section-title">上传材料</view>
+      
+      <view class="form-item">
+        <text class="form-label">个人证件照 <text class="required">*</text></text>
+        <view class="upload-area">
+          <view class="upload-item" a:if="{{profilePhoto}}">
+            <image src="{{profilePhoto}}" mode="aspectFill" onTap="previewImage" data-url="{{profilePhoto}}" data-type="profile"></image>
+            <view class="delete-btn" onTap="deleteImage" data-type="profile">×</view>
+          </view>
+          <view class="upload-btn" a:else onTap="chooseImage" data-type="profile">
+            <text class="upload-icon">+</text>
+            <text class="upload-text">上传</text>
+          </view>
+        </view>
+        <text class="form-tip">请上传一寸近期免冠证件照</text>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">身份证照片 <text class="required">*</text></text>
+        <view class="upload-area">
+          <view class="upload-item" a:for="{{idCardImages}}" a:key="index">
+            <image src="{{item}}" mode="aspectFill" onTap="previewImage" data-url="{{item}}"></image>
+            <view class="delete-btn" onTap="deleteImage" data-type="idCard" data-index="{{index}}">×</view>
+          </view>
+          <view class="upload-btn" a:if="{{idCardImages.length < 2}}" onTap="chooseImage" data-type="idCard">
+            <text class="upload-icon">+</text>
+            <text class="upload-text">上传</text>
+          </view>
+        </view>
+        <text class="form-tip">请上传身份证正反面照片</text>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">其他证明材料</text>
+        <view class="upload-area">
+          <view class="upload-item" a:for="{{otherImages}}" a:key="index">
+            <image src="{{item}}" mode="aspectFill" onTap="previewImage" data-url="{{item}}"></image>
+            <view class="delete-btn" onTap="deleteImage" data-type="other" data-index="{{index}}">×</view>
+          </view>
+          <view class="upload-btn" a:if="{{otherImages.length < 4}}" onTap="chooseImage" data-type="other">
+            <text class="upload-icon">+</text>
+            <text class="upload-text">上传</text>
+          </view>
+        </view>
+        <text class="form-tip">如：学历证书、其他资质证书等</text>
+      </view>
+    </view>
+
+    <view class="submit-area">
+      <button class="btn-primary" form-type="submit">发起计划</button>
+    </view>
+  </form>
+</view>

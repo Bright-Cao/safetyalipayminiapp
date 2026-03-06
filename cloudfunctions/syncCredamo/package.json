@@ -1,0 +1,8 @@
+{
+    "name": "syncCredamo",
+    "version": "1.0.0",
+    "description": "同步 Credamo 学习完成状态到数据库",
+    "main": "index.js",
+    "dependencies": {
+    }
+}

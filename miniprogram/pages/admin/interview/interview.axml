@@ -1,0 +1,131 @@
+<view class="container">
+  <!-- 计划人员信息 -->
+  <view class="info-card">
+    <view class="card-header">
+      <view class="card-title">计划人员信息</view>
+      <view class="category-tag">{{categoryNames[applicationInfo.category || 'guardian']}}</view>
+    </view>
+    <view class="info-row">
+      <text class="label">姓名：</text>
+      <text>{{applicationInfo.name}}</text>
+    </view>
+    <view class="info-row">
+      <text class="label">类型：</text>
+      <text>{{applicationInfo.applicantType === 'internal' ? '本厂' : '协作'}}</text>
+    </view>
+    <view class="info-row">
+      <text class="label">所属单位：</text>
+      <text>{{applicationInfo.company}}</text>
+    </view>
+    <view class="info-row">
+      <text class="label">所属分类：</text>
+      <text>{{applicationInfo.workshop || applicationInfo.workshop_name}}</text>
+    </view>
+    <view class="info-row">
+      <text class="label">相关协议：</text>
+      <text>{{applicationInfo.contractSigned === 'yes' ? '已签署' : '未签署'}}</text>
+    </view>
+    <view class="info-row">
+      <text class="label">配套保障：</text>
+      <text>{{applicationInfo.hasSocialSecurity === 'yes' ? '已具备' : '不具备'}}</text>
+    </view>
+    <view class="info-row">
+      <text class="label">年龄：</text>
+      <text>{{applicationInfo.age}}岁</text>
+    </view>
+    <view class="info-row">
+      <text class="label">联系电话：</text>
+      <text>{{applicationInfo.phone}}</text>
+    </view>
+    <view class="info-row">
+      <text class="label">学历：</text>
+      <text>{{applicationInfo.education}}</text>
+    </view>
+
+    <!-- 经验显示 -->
+    <view class="info-row" a:if="{{applicationInfo.category === 'guardian' || !applicationInfo.category}}">
+      <text class="label">经验值：</text>
+      <text>{{applicationInfo.workYears}}级</text>
+    </view>
+    <view class="info-row" a:if="{{applicationInfo.category === 'safety_manager' || applicationInfo.category === 'safety_officer'}}">
+      <text class="label">管理经验值：</text>
+      <text>{{applicationInfo.safetyManagementYears}}级</text>
+    </view>
+    <view class="info-row" a:if="{{applicationInfo.category === 'team_leader'}}">
+      <text class="label">综合经验值：</text>
+      <text>{{applicationInfo.siteManagementYears}}级</text>
+    </view>
+
+    <!-- 证书显示 -->
+    <view class="info-row" a:if="{{applicationInfo.category !== 'guardian' && applicationInfo.category}}">
+      <text class="label">安全员证编号：</text>
+      <text>{{applicationInfo.safetyCertNumber || '未填写'}}</text>
+    </view>
+    <view class="cert-images" a:if="{{applicationInfo.safety_cert_images && applicationInfo.safety_cert_images.length > 0}}">
+      <text class="label">安全员证照片：</text>
+      <view class="image-list">
+        <image 
+          a:for="{{applicationInfo.safety_cert_images}}" 
+          a:key="*this" 
+          src="{{item}}" 
+          mode="aspectFit" 
+          onTap="previewImage" 
+          data-url="{{item}}"
+          data-type="safetyCert"
+        ></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 水平评分 -->
+  <view class="score-card">
+    <view class="card-title">水平评分</view>
+    
+    <!-- 评分项 -->
+    <view class="score-item" a:for="{{scoreItems}}" a:key="id">
+      <view class="item-header">
+        <text class="item-name">{{item.name}}</text>
+        <text class="item-weight">（满分{{item.maxScore}}分）</text>
+      </view>
+      <view class="item-desc">{{item.desc}}</view>
+      <view class="score-input">
+        <slider 
+          value="{{scores[item.id]}}" 
+          min="0" 
+          max="{{item.maxScore}}" 
+          step="1" 
+          show-value 
+          onChange="onScoreChange" 
+          data-id="{{item.id}}"
+          active-color="#1890ff"
+        />
+      </view>
+    </view>
+
+    <!-- 总分 -->
+    <view class="total-score">
+      <text class="total-label">总分：</text>
+      <text class="total-value">{{totalScore}}</text>
+      <text class="total-full">/100</text>
+    </view>
+  </view>
+
+  <!-- 综合评价 -->
+  <view class="comment-card">
+    <view class="card-title">综合评价</view>
+    <textarea 
+      class="comment-input" 
+      placeholder="请输入评价内容..." 
+      value="{{comments}}"
+      onInput="onCommentInput"
+      maxlength="500"
+    />
+    <view class="char-count">{{comments.length}}/500</view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="actions">
+    <button class="btn btn-reject" onTap="handleReject">评估未达标</button>
+    <button class="btn btn-pass" onTap="handlePass">评估达标</button>
+  </view>
+</view>

@@ -1,0 +1,76 @@
+<!--pages/login/login.axml-->
+<view class="login-container">
+  <view class="logo-section">
+    <text class="logo-icon">🛡️</text>
+    <text class="app-name">安全知识学习助手</text>
+    <text class="app-subtitle">铁前安全培训管理系统</text>
+  </view>
+
+  <view class="login-form">
+    <!-- 手机号输入 -->
+    <view class="input-group">
+      <text class="input-label">手机号</text>
+      <input
+        class="input-field"
+        type="number"
+        placeholder="请输入您的手机号"
+        maxlength="11"
+        onInput="onPhoneInput"
+        onConfirm="handleLogin"
+      />
+    </view>
+
+    <!-- 协议勾选（支付宝 checkbox 需要放在 checkbox-group 内） -->
+    <checkbox-group onChange="onAgreementChange">
+      <view class="agreement">
+        <checkbox value="agreed" checked="{{agreedToTerms}}" />
+        <text>我已阅读并同意</text>
+        <text class="link" onTap="showTerms">《用户协议》</text>
+        <text>和</text>
+        <text class="link" onTap="showPrivacy">《隐私政策》</text>
+      </view>
+    </checkbox-group>
+
+    <!-- 登录按钮（不用 disabled，在 handler 内做验证） -->
+    <button
+      class="btn-login {{loading ? 'btn-loading' : ''}}"
+      onTap="handleLogin"
+    >
+      <text a:if="{{loading}}">登录中...</text>
+      <text a:else>登录</text>
+    </button>
+
+    <text class="login-tip">仅限厂内授权人员使用</text>
+  </view>
+
+  <!-- 角色选择 -->
+  <view class="role-selector">
+    <text class="role-title">选择角色</text>
+    <view class="role-options">
+      <view class="role-option {{selectedRole === 'applicant' ? 'active' : ''}}" onTap="selectRole" data-role="applicant">
+        <text>申请人</text>
+      </view>
+      <view class="role-option {{selectedRole === 'workshop_leader' ? 'active' : ''}}" onTap="selectRole" data-role="workshop_leader">
+        <text>车间领导</text>
+      </view>
+      <view class="role-option {{selectedRole === 'safety_admin' ? 'active' : ''}}" onTap="selectRole" data-role="safety_admin">
+        <text>安全科</text>
+      </view>
+      <view class="role-option {{selectedRole === 'checker' ? 'active' : ''}}" onTap="selectRole" data-role="checker">
+        <text>检查人员</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 车间选择（仅车间领导和申请人显示） -->
+  <view class="workshop-selector" a:if="{{selectedRole === 'workshop_leader' || selectedRole === 'applicant'}}">
+    <text class="workshop-title">选择车间</text>
+    <picker range="{{workshopList}}" range-key="name" value="{{workshopIndex}}" onChange="onWorkshopChange">
+      <view class="picker-value">
+        <text>{{workshopList[workshopIndex].name}}</text>
+        <text class="arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+
+</view>

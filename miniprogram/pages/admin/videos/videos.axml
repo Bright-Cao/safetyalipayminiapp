@@ -1,0 +1,130 @@
+<view class="container">
+  <!-- 添加按钮 -->
+  <view class="add-btn-wrapper">
+    <button class="add-btn" onTap="showAddModal">+ 添加视频</button>
+  </view>
+
+  <!-- 资源列表 -->
+  <view class="video-list">
+    <view class="video-item" a:for="{{videos}}" a:key="_id">
+      <view class="video-info">
+        <image class="thumbnail" src="{{item.thumbnail || '/assets/default-video.png'}}" mode="aspectFill" />
+        <view class="info-content">
+          <view class="title">{{item.title}}</view>
+          <view class="meta">
+            <text class="category">{{item.category}}</text>
+            <text class="duration">{{item.duration_str}}</text>
+          </view>
+          <view class="order">排序：{{item.order}}</view>
+        </view>
+        <view class="status-badge status-{{item.status}}">
+          {{item.status === 'active' ? '启用' : '隐藏'}}
+        </view>
+      </view>
+      <view class="video-actions">
+        <button class="btn-edit" size="mini" onTap="editVideo" data-id="{{item._id}}">编辑</button>
+        <button class="btn-toggle" size="mini" onTap="toggleStatus" data-id="{{item._id}}" data-status="{{item.status}}">
+          {{item.status === 'active' ? '隐藏' : '启用'}}
+        </button>
+        <button class="btn-delete" size="mini" onTap="deleteVideo" data-id="{{item._id}}">删除</button>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty" a:if="{{videos.length === 0}}">
+      <text class="empty-text">暂无学习资源，点击上方按钮添加</text>
+    </view>
+  </view>
+
+  <!-- 添加/编辑弹窗 -->
+  <view class="modal" a:if="{{showModal}}">
+    <view class="modal-mask" onTap="hideModal"></view>
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">{{isEdit ? '编辑资料' : '添加资料'}}</text>
+        <view class="modal-close" onTap="hideModal">✕</view>
+      </view>
+      
+      <scroll-view class="modal-body" scroll-y>
+        <!-- 标题 -->
+        <view class="form-item">
+          <view class="form-label">资料标题</view>
+          <input class="form-input" placeholder="请输入标题" value="{{formData.title}}" onInput="onInputChange" data-field="title" />
+        </view>
+
+        <!-- 描述 -->
+        <view class="form-item">
+          <view class="form-label">资料描述</view>
+          <textarea class="form-textarea" placeholder="请输入描述" value="{{formData.description}}" onInput="onInputChange" data-field="description" />
+        </view>
+
+        <!-- 分类 -->
+        <view class="form-item">
+          <view class="form-label">分类</view>
+          <picker mode="selector" range="{{categories}}" value="{{categoryIndex}}" onChange="onCategoryChange">
+            <view class="form-picker">{{categories[categoryIndex] || '请选择分类'}}</view>
+          </picker>
+        </view>
+
+        <!-- 排序 -->
+        <view class="form-item">
+          <view class="form-label">排序</view>
+          <input class="form-input" type="number" placeholder="数字越小越靠前" value="{{formData.order}}" onInput="onInputChange" data-field="order" />
+        </view>
+
+        <!-- 时长 -->
+        <view class="form-item">
+          <view class="form-label">时长（秒）</view>
+          <input class="form-input" type="number" placeholder="视频时长（秒）" value="{{formData.duration}}" onInput="onInputChange" data-field="duration" />
+        </view>
+
+        <!-- 学习链接 -->
+        <view class="form-item">
+          <view class="form-label">学习链接</view>
+          <input class="form-input" placeholder="请输入外部学习链接 (如 Credamo)" value="{{formData.video_url}}" onInput="onInputChange" data-field="video_url" />
+        </view>
+
+        <!-- 上传封面 -->
+        <view class="form-item">
+          <view class="form-label">封面图</view>
+          <view class="upload-section">
+            <button class="upload-btn" onTap="chooseThumbnail">
+              {{formData.thumbnail ? '✓ 已上传' : '选择封面'}}
+            </button>
+            <image a:if="{{formData.thumbnail}}" class="preview-img" src="{{formData.thumbnail}}" mode="aspectFill" />
+          </view>
+        </view>
+
+        <!-- 练习题 -->
+        <view class="form-item">
+          <view class="form-label">
+            <text>练习题</text>
+            <button class="btn-add-question" size="mini" onTap="addQuestion">+ 添加题目</button>
+          </view>
+          <view class="questions-list">
+            <view class="question-item" a:for="{{formData.practice_questions}}" a:key="index" a:for-item="q" a:for-index="qIndex">
+              <view class="question-header">
+                <text>题目 {{qIndex + 1}}</text>
+                <view class="btn-remove" onTap="removeQuestion" data-index="{{qIndex}}">删除</view>
+              </view>
+              <input class="question-input" placeholder="请输入题目" value="{{q.question}}" onInput="onQuestionChange" data-index="{{qIndex}}" data-field="question" />
+              <view class="options-list">
+                <view class="option-item" a:for="{{q.options}}" a:key="index" a:for-item="opt" a:for-index="optIndex">
+                  <input class="option-input" placeholder="选项{{optIndex + 1}}" value="{{opt}}" onInput="onOptionChange" data-qindex="{{qIndex}}" data-optindex="{{optIndex}}" />
+                  <radio-group onChange="onAnswerChange" data-index="{{qIndex}}">
+                    <radio value="{{optIndex}}" checked="{{q.answer === optIndex}}">正确答案</radio>
+                  </radio-group>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+
+      <view class="modal-footer">
+        <button class="btn-cancel" onTap="hideModal">取消</button>
+        <button class="btn-save" onTap="saveVideo">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

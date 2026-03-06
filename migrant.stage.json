@@ -1,0 +1,2064 @@
+{
+  "currentStage": "migrate_summary",
+  "stages": {
+    "migrate_active": {
+      "stage": "migrate_active",
+      "status": "completed",
+      "data": {
+        "projectPath": "/Users/cml/Documents/20260105153022_migrant_1772376920121",
+        "nprocessAIActiveStreamextSection": 6
+      },
+      "timestamp": 1772376942192
+    },
+    "migrate_list_directory": {
+      "stage": "migrate_list_directory",
+      "status": "completed",
+      "data": [
+        ".cloudbase/container/debug.json",
+        "cloudfunctions/checkGuardian/config.json",
+        "cloudfunctions/checkGuardian/index.js",
+        "cloudfunctions/checkGuardian/package.json",
+        "cloudfunctions/exportExcel/index.js",
+        "cloudfunctions/exportExcel/package.json",
+        "cloudfunctions/getExamQuestions/config.json",
+        "cloudfunctions/getExamQuestions/index.js",
+        "cloudfunctions/getExamQuestions/package.json",
+        "cloudfunctions/getPracticeQuestions/index.js",
+        "cloudfunctions/getPracticeQuestions/package.json",
+        "cloudfunctions/getStatistics/config.json",
+        "cloudfunctions/getStatistics/index.js",
+        "cloudfunctions/getStatistics/package.json",
+        "cloudfunctions/importExamQuestions/index.js",
+        "cloudfunctions/importExamQuestions/package.json",
+        "cloudfunctions/initDatabase/config.json",
+        "cloudfunctions/initDatabase/index.js",
+        "cloudfunctions/initDatabase/package.json",
+        "cloudfunctions/login/config.json",
+        "cloudfunctions/login/index.js",
+        "cloudfunctions/login/package.json",
+        "cloudfunctions/manageQuestions/index.js",
+        "cloudfunctions/manageQuestions/package.json",
+        "cloudfunctions/seedTestData/config.json",
+        "cloudfunctions/seedTestData/index.js",
+        "cloudfunctions/seedTestData/package.json",
+        "cloudfunctions/sendSMS/config.json",
+        "cloudfunctions/sendSMS/index.js",
+        "cloudfunctions/sendSMS/package.json",
+        "cloudfunctions/submitExam/config.json",
+        "cloudfunctions/submitExam/index.js",
+        "cloudfunctions/submitExam/package.json",
+        "cloudfunctions/submitPracticeAnswers/index.js",
+        "cloudfunctions/submitPracticeAnswers/package.json",
+        "cloudfunctions/syncCredamo/config.json",
+        "cloudfunctions/syncCredamo/index.js",
+        "cloudfunctions/syncCredamo/package.json",
+        "cloudfunctions/updateVideoProgress/config.json",
+        "cloudfunctions/updateVideoProgress/index.js",
+        "cloudfunctions/updateVideoProgress/package.json",
+        "mini.project.json",
+        "miniprogram/app.js",
+        "miniprogram/app.json",
+        "miniprogram/app.wxss",
+        "miniprogram/pages/admin/admin.js",
+        "miniprogram/pages/admin/admin.json",
+        "miniprogram/pages/admin/admin.wxml",
+        "miniprogram/pages/admin/admin.wxss",
+        "miniprogram/pages/admin/applications/applications.js",
+        "miniprogram/pages/admin/applications/applications.json",
+        "miniprogram/pages/admin/applications/applications.wxml",
+        "miniprogram/pages/admin/applications/applications.wxss",
+        "miniprogram/pages/admin/interview/interview.js",
+        "miniprogram/pages/admin/interview/interview.json",
+        "miniprogram/pages/admin/interview/interview.wxml",
+        "miniprogram/pages/admin/interview/interview.wxss",
+        "miniprogram/pages/admin/members/members.js",
+        "miniprogram/pages/admin/members/members.json",
+        "miniprogram/pages/admin/members/members.wxml",
+        "miniprogram/pages/admin/members/members.wxss",
+        "miniprogram/pages/admin/questions/questions.js",
+        "miniprogram/pages/admin/questions/questions.json",
+        "miniprogram/pages/admin/questions/questions.wxml",
+        "miniprogram/pages/admin/questions/questions.wxss",
+        "miniprogram/pages/admin/videos/videos.js",
+        "miniprogram/pages/admin/videos/videos.json",
+        "miniprogram/pages/admin/videos/videos.wxml",
+        "miniprogram/pages/admin/videos/videos.wxss",
+        "miniprogram/pages/apply/apply.js",
+        "miniprogram/pages/apply/apply.json",
+        "miniprogram/pages/apply/apply.wxml",
+        "miniprogram/pages/apply/apply.wxss",
+        "miniprogram/pages/check/check.js",
+        "miniprogram/pages/check/check.json",
+        "miniprogram/pages/check/check.wxml",
+        "miniprogram/pages/check/check.wxss",
+        "miniprogram/pages/exam/exam.js",
+        "miniprogram/pages/exam/exam.json",
+        "miniprogram/pages/exam/exam.wxml",
+        "miniprogram/pages/exam/exam.wxss",
+        "miniprogram/pages/index/index.js",
+        "miniprogram/pages/index/index.json",
+        "miniprogram/pages/index/index.wxml",
+        "miniprogram/pages/index/index.wxss",
+        "miniprogram/pages/interview/interview.js",
+        "miniprogram/pages/interview/interview.json",
+        "miniprogram/pages/interview/interview.wxml",
+        "miniprogram/pages/interview/interview.wxss",
+        "miniprogram/pages/login/login.js",
+        "miniprogram/pages/login/login.json",
+        "miniprogram/pages/login/login.wxml",
+        "miniprogram/pages/login/login.wxss",
+        "miniprogram/pages/practice/practice.js",
+        "miniprogram/pages/practice/practice.json",
+        "miniprogram/pages/practice/practice.wxml",
+        "miniprogram/pages/practice/practice.wxss",
+        "miniprogram/pages/practice-detail/practice-detail.js",
+        "miniprogram/pages/practice-detail/practice-detail.json",
+        "miniprogram/pages/practice-detail/practice-detail.wxml",
+        "miniprogram/pages/practice-detail/practice-detail.wxss",
+        "miniprogram/pages/profile/profile.js",
+        "miniprogram/pages/profile/profile.json",
+        "miniprogram/pages/profile/profile.wxml",
+        "miniprogram/pages/profile/profile.wxss",
+        "miniprogram/pages/result/result.js",
+        "miniprogram/pages/result/result.json",
+        "miniprogram/pages/result/result.wxml",
+        "miniprogram/pages/result/result.wxss",
+        "miniprogram/pages/setup/setup.js",
+        "miniprogram/pages/setup/setup.json",
+        "miniprogram/pages/setup/setup.wxml",
+        "miniprogram/pages/setup/setup.wxss",
+        "miniprogram/pages/training/training.js",
+        "miniprogram/pages/training/training.json",
+        "miniprogram/pages/training/training.wxml",
+        "miniprogram/pages/training/training.wxss",
+        "miniprogram/pages/video/video.js",
+        "miniprogram/pages/video/video.json",
+        "miniprogram/pages/video/video.wxml",
+        "miniprogram/pages/video/video.wxss",
+        "miniprogram/utils/api.js",
+        "miniprogram/utils/util.js",
+        "package.json",
+        "project.config.json",
+        "project.private.config.json"
+      ],
+      "timestamp": 1772376964060
+    },
+    "migrate_convert": {
+      "stage": "migrate_convert",
+      "status": "completed",
+      "data": [
+        {
+          "originalFilePath": ".cloudbase/container/debug.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/.cloudbase/container/debug.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/.cloudbase/container/debug.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/.cloudbase/container/debug.json",
+          "convertFilePath": ".cloudbase/container/debug.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/checkGuardian/config.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/checkGuardian/config.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/checkGuardian/config.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/checkGuardian/config.json",
+          "convertFilePath": "cloudfunctions/checkGuardian/config.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/checkGuardian/index.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/checkGuardian/index.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/checkGuardian/index.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/checkGuardian/index.js",
+          "convertFilePath": "cloudfunctions/checkGuardian/index.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/checkGuardian/package.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/checkGuardian/package.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/checkGuardian/package.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/checkGuardian/package.json",
+          "convertFilePath": "cloudfunctions/checkGuardian/package.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/exportExcel/index.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/exportExcel/index.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/exportExcel/index.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/exportExcel/index.js",
+          "convertFilePath": "cloudfunctions/exportExcel/index.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 2,
+            "removed": 2,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/exportExcel/package.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/exportExcel/package.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/exportExcel/package.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/exportExcel/package.json",
+          "convertFilePath": "cloudfunctions/exportExcel/package.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/getExamQuestions/config.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/getExamQuestions/config.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/getExamQuestions/config.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/getExamQuestions/config.json",
+          "convertFilePath": "cloudfunctions/getExamQuestions/config.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/getExamQuestions/index.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/getExamQuestions/index.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/getExamQuestions/index.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/getExamQuestions/index.js",
+          "convertFilePath": "cloudfunctions/getExamQuestions/index.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/getExamQuestions/package.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/getExamQuestions/package.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/getExamQuestions/package.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/getExamQuestions/package.json",
+          "convertFilePath": "cloudfunctions/getExamQuestions/package.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/getPracticeQuestions/index.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/getPracticeQuestions/index.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/getPracticeQuestions/index.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/getPracticeQuestions/index.js",
+          "convertFilePath": "cloudfunctions/getPracticeQuestions/index.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/getPracticeQuestions/package.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/getPracticeQuestions/package.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/getPracticeQuestions/package.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/getPracticeQuestions/package.json",
+          "convertFilePath": "cloudfunctions/getPracticeQuestions/package.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/getStatistics/config.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/getStatistics/config.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/getStatistics/config.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/getStatistics/config.json",
+          "convertFilePath": "cloudfunctions/getStatistics/config.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/getStatistics/index.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/getStatistics/index.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/getStatistics/index.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/getStatistics/index.js",
+          "convertFilePath": "cloudfunctions/getStatistics/index.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/getStatistics/package.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/getStatistics/package.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/getStatistics/package.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/getStatistics/package.json",
+          "convertFilePath": "cloudfunctions/getStatistics/package.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/importExamQuestions/index.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/importExamQuestions/index.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/importExamQuestions/index.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/importExamQuestions/index.js",
+          "convertFilePath": "cloudfunctions/importExamQuestions/index.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/importExamQuestions/package.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/importExamQuestions/package.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/importExamQuestions/package.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/importExamQuestions/package.json",
+          "convertFilePath": "cloudfunctions/importExamQuestions/package.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/initDatabase/config.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/initDatabase/config.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/initDatabase/config.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/initDatabase/config.json",
+          "convertFilePath": "cloudfunctions/initDatabase/config.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/initDatabase/index.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/initDatabase/index.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/initDatabase/index.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/initDatabase/index.js",
+          "convertFilePath": "cloudfunctions/initDatabase/index.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/initDatabase/package.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/initDatabase/package.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/initDatabase/package.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/initDatabase/package.json",
+          "convertFilePath": "cloudfunctions/initDatabase/package.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/login/config.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/login/config.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/login/config.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/login/config.json",
+          "convertFilePath": "cloudfunctions/login/config.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/login/index.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/login/index.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/login/index.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/login/index.js",
+          "convertFilePath": "cloudfunctions/login/index.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/login/package.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/login/package.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/login/package.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/login/package.json",
+          "convertFilePath": "cloudfunctions/login/package.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/manageQuestions/index.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/manageQuestions/index.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/manageQuestions/index.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/manageQuestions/index.js",
+          "convertFilePath": "cloudfunctions/manageQuestions/index.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/manageQuestions/package.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/manageQuestions/package.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/manageQuestions/package.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/manageQuestions/package.json",
+          "convertFilePath": "cloudfunctions/manageQuestions/package.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/seedTestData/config.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/seedTestData/config.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/seedTestData/config.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/seedTestData/config.json",
+          "convertFilePath": "cloudfunctions/seedTestData/config.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/seedTestData/index.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/seedTestData/index.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/seedTestData/index.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/seedTestData/index.js",
+          "convertFilePath": "cloudfunctions/seedTestData/index.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/seedTestData/package.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/seedTestData/package.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/seedTestData/package.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/seedTestData/package.json",
+          "convertFilePath": "cloudfunctions/seedTestData/package.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/sendSMS/config.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/sendSMS/config.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/sendSMS/config.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/sendSMS/config.json",
+          "convertFilePath": "cloudfunctions/sendSMS/config.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/sendSMS/index.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/sendSMS/index.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/sendSMS/index.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/sendSMS/index.js",
+          "convertFilePath": "cloudfunctions/sendSMS/index.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/sendSMS/package.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/sendSMS/package.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/sendSMS/package.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/sendSMS/package.json",
+          "convertFilePath": "cloudfunctions/sendSMS/package.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/submitExam/config.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/submitExam/config.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/submitExam/config.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/submitExam/config.json",
+          "convertFilePath": "cloudfunctions/submitExam/config.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/submitExam/index.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/submitExam/index.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/submitExam/index.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/submitExam/index.js",
+          "convertFilePath": "cloudfunctions/submitExam/index.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/submitExam/package.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/submitExam/package.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/submitExam/package.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/submitExam/package.json",
+          "convertFilePath": "cloudfunctions/submitExam/package.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/submitPracticeAnswers/index.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/submitPracticeAnswers/index.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/submitPracticeAnswers/index.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/submitPracticeAnswers/index.js",
+          "convertFilePath": "cloudfunctions/submitPracticeAnswers/index.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/submitPracticeAnswers/package.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/submitPracticeAnswers/package.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/submitPracticeAnswers/package.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/submitPracticeAnswers/package.json",
+          "convertFilePath": "cloudfunctions/submitPracticeAnswers/package.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/syncCredamo/config.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/syncCredamo/config.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/syncCredamo/config.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/syncCredamo/config.json",
+          "convertFilePath": "cloudfunctions/syncCredamo/config.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/syncCredamo/index.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/syncCredamo/index.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/syncCredamo/index.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/syncCredamo/index.js",
+          "convertFilePath": "cloudfunctions/syncCredamo/index.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/syncCredamo/package.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/syncCredamo/package.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/syncCredamo/package.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/syncCredamo/package.json",
+          "convertFilePath": "cloudfunctions/syncCredamo/package.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/updateVideoProgress/config.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/updateVideoProgress/config.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/updateVideoProgress/config.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/updateVideoProgress/config.json",
+          "convertFilePath": "cloudfunctions/updateVideoProgress/config.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/updateVideoProgress/index.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/updateVideoProgress/index.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/updateVideoProgress/index.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/updateVideoProgress/index.js",
+          "convertFilePath": "cloudfunctions/updateVideoProgress/index.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "cloudfunctions/updateVideoProgress/package.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/cloudfunctions/updateVideoProgress/package.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/updateVideoProgress/package.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/cloudfunctions/updateVideoProgress/package.json",
+          "convertFilePath": "cloudfunctions/updateVideoProgress/package.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "mini.project.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/mini.project.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/mini.project.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/mini.project.json",
+          "convertFilePath": "mini.project.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/app.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/app.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/app.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/app.js",
+          "convertFilePath": "miniprogram/app.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 11,
+            "removed": 12,
+            "net": -1
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/app.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/app.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/app.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/app.json",
+          "convertFilePath": "miniprogram/app.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 5,
+            "removed": 6,
+            "net": -1
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/app.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/app.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/app.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/app.acss",
+          "convertFilePath": "miniprogram/app.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 9,
+            "removed": 1,
+            "net": 8
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/admin.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/admin.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/admin.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/admin.js",
+          "convertFilePath": "miniprogram/pages/admin/admin.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 29,
+            "removed": 24,
+            "net": 5
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/admin.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/admin.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/admin.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/admin.json",
+          "convertFilePath": "miniprogram/pages/admin/admin.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/admin.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/admin.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/admin.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/admin.axml",
+          "convertFilePath": "miniprogram/pages/admin/admin.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 16,
+            "removed": 16,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/admin.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/admin.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/admin.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/admin.acss",
+          "convertFilePath": "miniprogram/pages/admin/admin.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 2,
+            "net": -1
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/applications/applications.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/applications/applications.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/applications/applications.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/applications/applications.js",
+          "convertFilePath": "miniprogram/pages/admin/applications/applications.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 5,
+            "removed": 5,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/applications/applications.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/applications/applications.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/applications/applications.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/applications/applications.json",
+          "convertFilePath": "miniprogram/pages/admin/applications/applications.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/applications/applications.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/applications/applications.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/applications/applications.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/applications/applications.axml",
+          "convertFilePath": "miniprogram/pages/admin/applications/applications.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 7,
+            "removed": 7,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/applications/applications.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/applications/applications.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/applications/applications.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/applications/applications.acss",
+          "convertFilePath": "miniprogram/pages/admin/applications/applications.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 0,
+            "net": 1
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/interview/interview.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/interview/interview.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/interview/interview.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/interview/interview.js",
+          "convertFilePath": "miniprogram/pages/admin/interview/interview.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 10,
+            "removed": 10,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/interview/interview.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/interview/interview.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/interview/interview.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/interview/interview.json",
+          "convertFilePath": "miniprogram/pages/admin/interview/interview.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/interview/interview.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/interview/interview.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/interview/interview.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/interview/interview.axml",
+          "convertFilePath": "miniprogram/pages/admin/interview/interview.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 14,
+            "removed": 14,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/interview/interview.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/interview/interview.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/interview/interview.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/interview/interview.acss",
+          "convertFilePath": "miniprogram/pages/admin/interview/interview.acss",
+          "retryCount": 2,
+          "changes": {
+            "added": 1,
+            "removed": 0,
+            "net": 1
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/members/members.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/members/members.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/members/members.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/members/members.js",
+          "convertFilePath": "miniprogram/pages/admin/members/members.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 3,
+            "removed": 0,
+            "net": 3
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/members/members.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/members/members.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/members/members.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/members/members.json",
+          "convertFilePath": "miniprogram/pages/admin/members/members.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/members/members.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/members/members.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/members/members.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/members/members.axml",
+          "convertFilePath": "miniprogram/pages/admin/members/members.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 17,
+            "removed": 17,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/members/members.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/members/members.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/members/members.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/members/members.acss",
+          "convertFilePath": "miniprogram/pages/admin/members/members.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 2,
+            "removed": 2,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/questions/questions.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/questions/questions.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/questions/questions.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/questions/questions.js",
+          "convertFilePath": "miniprogram/pages/admin/questions/questions.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 30,
+            "removed": 21,
+            "net": 9
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/questions/questions.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/questions/questions.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/questions/questions.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/questions/questions.json",
+          "convertFilePath": "miniprogram/pages/admin/questions/questions.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/questions/questions.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/questions/questions.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/questions/questions.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/questions/questions.axml",
+          "convertFilePath": "miniprogram/pages/admin/questions/questions.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 10,
+            "removed": 10,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/questions/questions.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/questions/questions.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/questions/questions.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/questions/questions.acss",
+          "convertFilePath": "miniprogram/pages/admin/questions/questions.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 3,
+            "removed": 0,
+            "net": 3
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/videos/videos.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/videos/videos.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/videos/videos.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/videos/videos.js",
+          "convertFilePath": "miniprogram/pages/admin/videos/videos.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 8,
+            "removed": 8,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/videos/videos.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/videos/videos.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/videos/videos.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/videos/videos.json",
+          "convertFilePath": "miniprogram/pages/admin/videos/videos.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/videos/videos.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/videos/videos.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/videos/videos.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/videos/videos.axml",
+          "convertFilePath": "miniprogram/pages/admin/videos/videos.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 26,
+            "removed": 26,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/admin/videos/videos.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/admin/videos/videos.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/videos/videos.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/admin/videos/videos.acss",
+          "convertFilePath": "miniprogram/pages/admin/videos/videos.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 0,
+            "net": 1
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/apply/apply.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/apply/apply.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/apply/apply.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/apply/apply.js",
+          "convertFilePath": "miniprogram/pages/apply/apply.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 6,
+            "removed": 6,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/apply/apply.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/apply/apply.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/apply/apply.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/apply/apply.json",
+          "convertFilePath": "miniprogram/pages/apply/apply.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/apply/apply.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/apply/apply.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/apply/apply.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/apply/apply.axml",
+          "convertFilePath": "miniprogram/pages/apply/apply.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 55,
+            "removed": 55,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/apply/apply.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/apply/apply.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/apply/apply.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/apply/apply.acss",
+          "convertFilePath": "miniprogram/pages/apply/apply.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 0,
+            "net": 1
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/check/check.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/check/check.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/check/check.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/check/check.js",
+          "convertFilePath": "miniprogram/pages/check/check.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 6,
+            "removed": 6,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/check/check.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/check/check.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/check/check.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/check/check.json",
+          "convertFilePath": "miniprogram/pages/check/check.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/check/check.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/check/check.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/check/check.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/check/check.axml",
+          "convertFilePath": "miniprogram/pages/check/check.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 12,
+            "removed": 12,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/check/check.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/check/check.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/check/check.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/check/check.acss",
+          "convertFilePath": "miniprogram/pages/check/check.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 0,
+            "net": 1
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/exam/exam.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/exam/exam.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/exam/exam.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/exam/exam.js",
+          "convertFilePath": "miniprogram/pages/exam/exam.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 8,
+            "removed": 8,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/exam/exam.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/exam/exam.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/exam/exam.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/exam/exam.json",
+          "convertFilePath": "miniprogram/pages/exam/exam.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/exam/exam.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/exam/exam.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/exam/exam.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/exam/exam.axml",
+          "convertFilePath": "miniprogram/pages/exam/exam.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 20,
+            "removed": 28,
+            "net": -8
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/exam/exam.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/exam/exam.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/exam/exam.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/exam/exam.acss",
+          "convertFilePath": "miniprogram/pages/exam/exam.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 3,
+            "removed": 2,
+            "net": 1
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/index/index.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/index/index.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/index/index.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/index/index.js",
+          "convertFilePath": "miniprogram/pages/index/index.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 51,
+            "removed": 49,
+            "net": 2
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/index/index.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/index/index.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/index/index.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/index/index.json",
+          "convertFilePath": "miniprogram/pages/index/index.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/index/index.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/index/index.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/index/index.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/index/index.axml",
+          "convertFilePath": "miniprogram/pages/index/index.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 16,
+            "removed": 16,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/index/index.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/index/index.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/index/index.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/index/index.acss",
+          "convertFilePath": "miniprogram/pages/index/index.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/interview/interview.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/interview/interview.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/interview/interview.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/interview/interview.js",
+          "convertFilePath": "miniprogram/pages/interview/interview.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/interview/interview.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/interview/interview.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/interview/interview.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/interview/interview.json",
+          "convertFilePath": "miniprogram/pages/interview/interview.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/interview/interview.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/interview/interview.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/interview/interview.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/interview/interview.axml",
+          "convertFilePath": "miniprogram/pages/interview/interview.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 13,
+            "removed": 13,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/interview/interview.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/interview/interview.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/interview/interview.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/interview/interview.acss",
+          "convertFilePath": "miniprogram/pages/interview/interview.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 0,
+            "net": 1
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/login/login.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/login/login.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/login/login.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/login/login.js",
+          "convertFilePath": "miniprogram/pages/login/login.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 19,
+            "removed": 19,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/login/login.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/login/login.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/login/login.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/login/login.json",
+          "convertFilePath": "miniprogram/pages/login/login.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 2,
+            "removed": 2,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/login/login.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/login/login.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/login/login.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/login/login.axml",
+          "convertFilePath": "miniprogram/pages/login/login.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 14,
+            "removed": 12,
+            "net": 2
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/login/login.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/login/login.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/login/login.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/login/login.acss",
+          "convertFilePath": "miniprogram/pages/login/login.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/practice/practice.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/practice/practice.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/practice/practice.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/practice/practice.js",
+          "convertFilePath": "miniprogram/pages/practice/practice.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 2,
+            "removed": 2,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/practice/practice.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/practice/practice.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/practice/practice.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/practice/practice.json",
+          "convertFilePath": "miniprogram/pages/practice/practice.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/practice/practice.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/practice/practice.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/practice/practice.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/practice/practice.axml",
+          "convertFilePath": "miniprogram/pages/practice/practice.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 4,
+            "removed": 4,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/practice/practice.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/practice/practice.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/practice/practice.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/practice/practice.acss",
+          "convertFilePath": "miniprogram/pages/practice/practice.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/practice-detail/practice-detail.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/practice-detail/practice-detail.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/practice-detail/practice-detail.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/practice-detail/practice-detail.js",
+          "convertFilePath": "miniprogram/pages/practice-detail/practice-detail.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 4,
+            "removed": 4,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/practice-detail/practice-detail.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/practice-detail/practice-detail.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/practice-detail/practice-detail.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/practice-detail/practice-detail.json",
+          "convertFilePath": "miniprogram/pages/practice-detail/practice-detail.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/practice-detail/practice-detail.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/practice-detail/practice-detail.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/practice-detail/practice-detail.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/practice-detail/practice-detail.axml",
+          "convertFilePath": "miniprogram/pages/practice-detail/practice-detail.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 34,
+            "removed": 42,
+            "net": -8
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/practice-detail/practice-detail.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/practice-detail/practice-detail.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/practice-detail/practice-detail.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/practice-detail/practice-detail.acss",
+          "convertFilePath": "miniprogram/pages/practice-detail/practice-detail.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 2,
+            "removed": 0,
+            "net": 2
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/profile/profile.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/profile/profile.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/profile/profile.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/profile/profile.js",
+          "convertFilePath": "miniprogram/pages/profile/profile.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 27,
+            "removed": 27,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/profile/profile.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/profile/profile.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/profile/profile.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/profile/profile.json",
+          "convertFilePath": "miniprogram/pages/profile/profile.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/profile/profile.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/profile/profile.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/profile/profile.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/profile/profile.axml",
+          "convertFilePath": "miniprogram/pages/profile/profile.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 10,
+            "removed": 10,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/profile/profile.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/profile/profile.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/profile/profile.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/profile/profile.acss",
+          "convertFilePath": "miniprogram/pages/profile/profile.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 2,
+            "removed": 1,
+            "net": 1
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/result/result.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/result/result.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/result/result.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/result/result.js",
+          "convertFilePath": "miniprogram/pages/result/result.js",
+          "retryCount": 1,
+          "changes": {
+            "added": 8,
+            "removed": 7,
+            "net": 1
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/result/result.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/result/result.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/result/result.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/result/result.json",
+          "convertFilePath": "miniprogram/pages/result/result.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/result/result.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/result/result.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/result/result.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/result/result.axml",
+          "convertFilePath": "miniprogram/pages/result/result.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 11,
+            "removed": 11,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/result/result.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/result/result.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/result/result.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/result/result.acss",
+          "convertFilePath": "miniprogram/pages/result/result.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 30,
+            "removed": 2,
+            "net": 28
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/setup/setup.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/setup/setup.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/setup/setup.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/setup/setup.js",
+          "convertFilePath": "miniprogram/pages/setup/setup.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 35,
+            "removed": 32,
+            "net": 3
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/setup/setup.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/setup/setup.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/setup/setup.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/setup/setup.json",
+          "convertFilePath": "miniprogram/pages/setup/setup.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 3,
+            "removed": 3,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/setup/setup.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/setup/setup.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/setup/setup.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/setup/setup.axml",
+          "convertFilePath": "miniprogram/pages/setup/setup.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 5,
+            "removed": 5,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/setup/setup.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/setup/setup.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/setup/setup.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/setup/setup.acss",
+          "convertFilePath": "miniprogram/pages/setup/setup.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 3,
+            "removed": 0,
+            "net": 3
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/training/training.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/training/training.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/training/training.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/training/training.js",
+          "convertFilePath": "miniprogram/pages/training/training.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 14,
+            "removed": 14,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/training/training.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/training/training.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/training/training.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/training/training.json",
+          "convertFilePath": "miniprogram/pages/training/training.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/training/training.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/training/training.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/training/training.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/training/training.axml",
+          "convertFilePath": "miniprogram/pages/training/training.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 7,
+            "removed": 8,
+            "net": -1
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/training/training.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/training/training.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/training/training.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/training/training.acss",
+          "convertFilePath": "miniprogram/pages/training/training.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 3,
+            "removed": 1,
+            "net": 2
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/video/video.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/video/video.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/video/video.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/video/video.js",
+          "convertFilePath": "miniprogram/pages/video/video.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 11,
+            "removed": 7,
+            "net": 4
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/video/video.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/video/video.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/video/video.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/video/video.json",
+          "convertFilePath": "miniprogram/pages/video/video.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/video/video.wxml",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/video/video.wxml",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/video/video.wxml",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/video/video.axml",
+          "convertFilePath": "miniprogram/pages/video/video.axml",
+          "retryCount": 0,
+          "changes": {
+            "added": 4,
+            "removed": 4,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/pages/video/video.wxss",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/pages/video/video.wxss",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/video/video.wxss",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/pages/video/video.acss",
+          "convertFilePath": "miniprogram/pages/video/video.acss",
+          "retryCount": 0,
+          "changes": {
+            "added": 2,
+            "removed": 1,
+            "net": 1
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "miniprogram/utils/api.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/utils/api.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/utils/api.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/utils/api.js",
+          "convertFilePath": "miniprogram/utils/api.js",
+          "retryCount": 0,
+          "changes": {
+            "added": 9,
+            "removed": 9,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "miniprogram/utils/util.js",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/miniprogram/utils/util.js",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/utils/util.js",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/miniprogram/utils/util.js",
+          "convertFilePath": "miniprogram/utils/util.js",
+          "retryCount": 1,
+          "changes": {
+            "added": 19,
+            "removed": 19,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "package.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/package.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/package.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/package.json",
+          "convertFilePath": "package.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 1,
+            "removed": 1,
+            "net": 0
+          },
+          "fileChangeType": "update"
+        },
+        {
+          "originalFilePath": "project.config.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/project.config.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/project.config.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/mini.project.json",
+          "convertFilePath": "mini.project.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        },
+        {
+          "originalFilePath": "project.private.config.json",
+          "status": "success",
+          "backupOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/backup/project.private.config.json",
+          "adoptOriginalFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/project.private.config.json",
+          "adoptConvertFilePath": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121/adopt/mini.project.json",
+          "convertFilePath": "mini.project.json",
+          "retryCount": 0,
+          "changes": {
+            "added": 0,
+            "removed": 0,
+            "net": 0
+          },
+          "fileChangeType": "add"
+        }
+      ],
+      "timestamp": 1772379895793
+    },
+    "migrate_summary": {
+      "stage": "migrate_summary",
+      "status": "completed",
+      "data": {
+        "retryCount": 0
+      },
+      "timestamp": 1772379912169
+    }
+  },
+  "lastUpdated": 1772379912169,
+  "globalStatus": "completed",
+  "cachedMessages": [
+    "prepare-section-0",
+    "prepare-section-1",
+    "prepare-section-2",
+    "prepare-section-3",
+    "prepare-section-4",
+    "prepare-section-5",
+    "upload-phase-analysis",
+    "summary-phase-content"
+  ]
+}

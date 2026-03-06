@@ -1,0 +1,89 @@
+<view class="container">
+  <!-- 测评设置 -->
+  <view class="card">
+    <view class="card-title">测评规则设置</view>
+    
+    <view class="form-group">
+      <view class="form-item">
+        <text class="label">达标分数</text>
+        <input class="input" type="number" value="{{settings.passing_score}}" data-field="passing_score" onInput="onSettingChange" placeholder="请输入分数" />
+      </view>
+      <view class="form-item">
+        <text class="label">测评总分</text>
+        <view class="value">{{totalScore}} 分</view>
+      </view>
+    </view>
+
+    <view class="divider"></view>
+    <view class="subtitle">单选题设置</view>
+    <view class="form-row">
+      <view class="form-item">
+        <text class="label">题目数量</text>
+        <input class="input" type="number" value="{{settings.single.count}}" data-type="single" data-field="count" onInput="onConfigChange" />
+      </view>
+      <view class="form-item">
+        <text class="label">每题分值</text>
+        <input class="input" type="number" value="{{settings.single.score}}" data-type="single" data-field="score" onInput="onConfigChange" />
+      </view>
+    </view>
+
+    <view class="divider"></view>
+    <view class="subtitle">多选题设置</view>
+    <view class="form-row">
+      <view class="form-item">
+        <text class="label">题目数量</text>
+        <input class="input" type="number" value="{{settings.multiple.count}}" data-type="multiple" data-field="count" onInput="onConfigChange" />
+      </view>
+      <view class="form-item">
+        <text class="label">每题分值</text>
+        <input class="input" type="number" value="{{settings.multiple.score}}" data-type="multiple" data-field="score" onInput="onConfigChange" />
+      </view>
+    </view>
+
+    <view class="divider"></view>
+    <view class="subtitle">判断题设置</view>
+    <view class="form-row">
+      <view class="form-item">
+        <text class="label">题目数量</text>
+        <input class="input" type="number" value="{{settings.judge.count}}" data-type="judge" data-field="count" onInput="onConfigChange" />
+      </view>
+      <view class="form-item">
+        <text class="label">每题分值</text>
+        <input class="input" type="number" value="{{settings.judge.score}}" data-type="judge" data-field="score" onInput="onConfigChange" />
+      </view>
+    </view>
+
+    <button class="btn-primary" onTap="saveSettings">保存设置</button>
+  </view>
+
+  <!-- 题目导入 -->
+  <view class="card">
+    <view class="card-title">题目导入</view>
+    <view class="notice">
+      <text>请上传 Excel 文件，格式如下：</text>
+      <text>题型 | 题目 | 选项1 | 选项2 | 选项3 | 选项4 | 正确答案</text>
+    </view>
+    
+    <view class="stats">
+      <view class="stat-item">
+        <text class="stat-num">{{stats.total || 0}}</text>
+        <text class="stat-label">总题目</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">{{stats.single || 0}}</text>
+        <text class="stat-label">单选</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">{{stats.multiple || 0}}</text>
+        <text class="stat-label">多选</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">{{stats.judge || 0}}</text>
+        <text class="stat-label">判断</text>
+      </view>
+    </view>
+
+    <button class="btn-outline" onTap="importQuestions">导入题目 (Excel)</button>
+    <button class="btn-danger" onTap="clearQuestions" style="margin-top: 20rpx;">清空所有题目</button>
+  </view>
+</view>

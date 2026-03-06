@@ -1,0 +1,171 @@
+<import-sjs name="utils" from="./utils.sjs" />
+
+<view class="container">
+  <view class="card" a:if="{{!examStarted}}">
+    <view class="card-title">自测试说明</view>
+    <view class="exam-info">
+      <view class="info-item">
+        <text class="info-label">测评题数：</text>
+        <text class="info-value">{{totalQuestions}}题</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">建议时长：</text>
+        <text class="info-value">{{examDuration}}分钟</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">达标分数：</text>
+        <text class="info-value">{{passingScore}}分</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">剩余次数：</text>
+        <text class="info-value">{{remainingAttempts}}次</text>
+      </view>
+    </view>
+
+    <view class="notice-list">
+      <view class="notice-item">
+        <text class="notice-icon">⚠️</text>
+        <text class="notice-text">考试过程中请勿切换应用或锁屏</text>
+      </view>
+      <view class="notice-item">
+        <text class="notice-icon">⚠️</text>
+        <text class="notice-text">测评时间到将自动提交</text>
+      </view>
+      <view class="notice-item">
+        <text class="notice-icon">⚠️</text>
+        <text class="notice-text">请认真作答，以了解知识掌握情况</text>
+      </view>
+      <view class="notice-item">
+        <text class="notice-icon">⚠️</text>
+        <text class="notice-text">完成提交后可查看解析</text>
+      </view>
+    </view>
+
+    <button class="btn-primary" onTap="startExam">进入测评</button>
+  </view>
+
+  <!-- 考试中 -->
+  <view class="exam-content" a:if="{{examStarted && (!examFinished || reviewMode)}}">
+    <!-- 倒计时 -->
+    <view class="timer-bar" a:if="{{!reviewMode}}">
+      <text class="timer-label">剩余时间：</text>
+      <text class="timer-value {{remainingTime < 300 ? 'warning' : ''}}">{{remainingTimeText}}</text>
+    </view>
+
+    <!-- 题目列表 -->
+    <view class="question-list">
+      <view class="question-card" id="question-{{index}}" a:for="{{questions}}" a:key="id">
+        <view class="question-header">
+          <text class="question-number">第{{index + 1}}题</text>
+          <text class="question-type">{{item.typeText}}</text>
+          <text class="question-score">{{item.score}}分</text>
+        </view>
+
+        <view class="question-content">
+          <text class="question-text">{{item.question}}</text>
+        </view>
+
+        <!-- 单选题 -->
+        <radio-group a:if="{{item.type === 'single'}}" onChange="onAnswerChange" data-index="{{index}}">
+          <label class="option-item" a:for="{{item.options}}" a:key="*this" a:for-item="option" a:for-index="optionIndex">
+            <radio value="{{option}}" checked="{{item.answer === option}}" disabled="{{reviewMode}}" />
+            <text>{{option}}</text>
+          </label>
+        </radio-group>
+
+        <!-- 多选题 -->
+        <checkbox-group a:if="{{item.type === 'multiple'}}" onChange="onAnswerChange" data-index="{{index}}">
+          <label class="option-item" a:for="{{item.options}}" a:key="*this" a:for-item="option">
+            <checkbox value="{{option}}" checked="{{utils.includes(item.answer, option)}}" disabled="{{reviewMode}}" />
+            <text>{{option}}</text>
+          </label>
+        </checkbox-group>
+
+        <!-- 判断题 -->
+        <radio-group a:if="{{item.type === 'judge'}}" onChange="onAnswerChange" data-index="{{index}}">
+          <label class="option-item">
+            <radio value="正确" checked="{{item.answer === '正确'}}" disabled="{{reviewMode}}" />
+            <text>正确</text>
+          </label>
+          <label class="option-item">
+            <radio value="错误" checked="{{item.answer === '错误'}}" disabled="{{reviewMode}}" />
+            <text>错误</text>
+          </label>
+        </radio-group>
+
+        <!-- 答案解析 -->
+        <view class="analysis-box" a:if="{{reviewMode}}">
+          <view class="analysis-divider"></view>
+          <view class="analysis-row">
+            <text class="analysis-label">正确答案：</text>
+            <text class="analysis-value correct">{{item.correctAnswer}}</text>
+          </view>
+          <view class="analysis-row" a:if="{{item.explanation}}">
+            <text class="analysis-label">解析：</text>
+            <text class="analysis-value">{{item.explanation}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 答题卡 -->
+    <view class="answer-sheet">
+      <view class="sheet-title">答题卡</view>
+      <view class="sheet-grid">
+        <view class="sheet-item {{item.answer && item.answer.length > 0 ? 'answered' : ''}}" a:for="{{questions}}" a:key="id" onTap="scrollToQuestion" data-index="{{index}}">
+          {{index + 1}}
+        </view>
+      </view>
+      <view class="sheet-stats">
+        <text>已答：{{answeredCount}}/{{totalQuestions}}</text>
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="submit-area">
+      <button class="btn-primary" onTap="submitExam" a:if="{{!reviewMode}}">提交测评</button>
+      <button class="btn-primary" onTap="backToHome" a:if="{{reviewMode}}">返回首页</button>
+    </view>
+  </view>
+
+  <!-- 测评结果 -->
+  <view class="result-content" a:if="{{examFinished && !reviewMode}}">
+    <view class="result-card">
+      <view class="result-icon {{passed ? 'pass' : 'fail'}}">
+        {{passed ? '✓' : '✗'}}
+      </view>
+      <text class="result-title">{{passed ? '本次测评已达标！' : '很遗憾，本次测评未达标'}}</text>
+      <text class="result-score">{{examScore}}</text>
+      <text class="result-label">分</text>
+      <text class="result-status {{passed ? 'pass' : 'fail'}}">
+        {{passed ? '达标' : '未达标'}}
+      </text>
+    </view>
+
+    <view class="card">
+      <view class="card-title">成绩详情</view>
+      <view class="detail-item">
+        <text class="detail-label">总分：</text>
+        <text class="detail-value">100分</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">得分：</text>
+        <text class="detail-value">{{examScore}}分</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">正确率：</text>
+        <text class="detail-value">{{correctRate}}%</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">测评用时：</text>
+        <text class="detail-value">{{examTimeUsed}}</text>
+      </view>
+    </view>
+
+    <view class="action-buttons">
+      <button class="btn-secondary" onTap="viewAnswers">查看解析</button>
+      <button class="btn-primary" onTap="backToHome" a:if="{{passed}}">返回首页</button>
+      <button class="btn-primary" onTap="retryExam" a:if="{{!passed && remainingAttempts > 0}}">再次测评</button>
+    </view>
+  </view>
+</view>

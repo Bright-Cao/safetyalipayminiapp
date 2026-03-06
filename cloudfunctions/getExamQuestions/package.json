@@ -1,0 +1,8 @@
+{
+  "name": "getExamQuestions",
+  "version": "1.0.0",
+  "description": "获取考试题目",
+  "main": "index.js",
+  "dependencies": {
+  }
+}

@@ -1,0 +1,340 @@
+/* 🚀 全局容器 */
+.container {
+  min-height: 100vh;
+  background: #f0f2f5;
+  padding: 30rpx;
+  display: block;
+}
+
+/* 🏆 高级证书容器 */
+.certificate-container {
+  width: 100%;
+  perspective: 1000px;
+  display: block;
+}
+
+.cert-card-outer {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 12rpx;
+  box-shadow: 0 20rpx 40rpx rgba(0, 0, 0, 0.08);
+  border: 1rpx solid rgba(0, 0, 0, 0.05);
+  display: block;
+}
+
+.cert-card-inner {
+  border: 4rpx solid #b38d45; /* 金色边框 */
+  border-radius: 16rpx;
+  padding: 40rpx 30rpx;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to bottom right, #ffffff, #fffdf8);
+  display: block;
+}
+
+/* 侧边装饰条 */
+.decoration-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12rpx;
+  height: 100%;
+  background: linear-gradient(to bottom, #b38d45, #d4af37);
+  display: block;
+}
+
+/* 顶部标题区 */
+.cert-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50rpx;
+  border-bottom: 2rpx solid #f5f5f5;
+  padding-bottom: 20rpx;
+}
+
+.cert-logo {
+  font-size: 50rpx;
+  margin-right: 20rpx;
+  display: block;
+}
+
+.header-text {
+  flex: 1;
+  display: block;
+}
+
+.cert-title {
+  display: block;
+  font-size: 38rpx;
+  font-weight: 800;
+  color: #1a1a1a;
+  letter-spacing: 2rpx;
+}
+
+.cert-subtitle {
+  font-size: 22rpx;
+  color: #b38d45;
+  text-transform: uppercase;
+  margin-top: 4rpx;
+  font-weight: 500;
+  display: block;
+}
+
+/* 主体内容区 */
+.cert-main {
+  display: flex;
+  gap: 30rpx;
+  margin-bottom: 50rpx;
+}
+
+.photo-section {
+  position: relative;
+  width: 180rpx;
+  flex-shrink: 0;
+  display: block;
+}
+
+.user-photo {
+  width: 180rpx;
+  height: 240rpx;
+  border-radius: 12rpx;
+  background: #f8f8f8;
+  border: 2rpx solid #eee;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+  display: block;
+}
+
+.verify-badge {
+  position: absolute;
+  bottom: -15rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #52c41a;
+  color: #fff;
+  font-size: 20rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  white-space: nowrap;
+  font-weight: 600;
+  display: block;
+}
+
+.info-section {
+  flex: 1;
+  display: block;
+}
+
+.grid-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-label {
+  font-size: 20rpx;
+  color: #999;
+  margin-bottom: 4rpx;
+  display: block;
+}
+
+.grid-value {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 600;
+  display: block;
+}
+
+.grid-value.highlight {
+  color: #1a1a1a;
+  font-size: 30rpx;
+}
+
+.grid-value.mono {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* 详情列表 */
+.details-list {
+  background: #fbfbfb;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  display: block;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+  font-size: 24rpx;
+}
+
+.detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.dot {
+  color: #b38d45;
+  font-size: 16rpx;
+  margin-right: 12rpx;
+  display: block;
+}
+
+.detail-label {
+  color: #888;
+  width: 140rpx;
+  display: block;
+}
+
+.detail-value {
+  color: #444;
+  flex: 1;
+  display: block;
+}
+
+.highlight-expiry {
+  color: #f5222d;
+  font-weight: 600;
+}
+
+/* 底部区域（印章与二维码） */
+.cert-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 40rpx;
+}
+
+.qr-placeholder {
+  width: 100rpx;
+  height: 100rpx;
+  background: #fff;
+  border: 1rpx solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx;
+}
+
+.qr-text {
+  font-size: 16rpx;
+  color: #999;
+  text-align: center;
+  display: block;
+}
+
+.footer-seal {
+  position: relative;
+  width: 200rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seal-text {
+  font-size: 22rpx;
+  color: rgba(255, 77, 79, 0.7);
+  font-weight: 800;
+  border: 2rpx solid rgba(255, 77, 79, 0.7);
+  padding: 4rpx 12rpx;
+  transform: rotate(-15deg);
+  z-index: 1;
+  display: block;
+}
+
+.seal-circle {
+  position: absolute;
+  width: 120rpx;
+  height: 120rpx;
+  border: 4rpx solid rgba(255, 77, 79, 0.2);
+  border-radius: 50%;
+  display: block;
+}
+
+/* 操作按钮 */
+.cert-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50rpx;
+}
+
+.action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.action-icon {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  color: white;
+  box-shadow: 0 10rpx 20rpx rgba(0,0,0,0.1);
+}
+
+.bg-blue { background: linear-gradient(135deg, #1890ff, #0050b3); display: block;}
+.bg-green { background: linear-gradient(135deg, #52c41a, #237804); display: block;}
+
+.action-item text {
+  font-size: 24rpx;
+  color: #666;
+  display: block;
+}
+
+/* 无证书状态 */
+.card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 60rpx 40rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 10rpx 30rpx rgba(0,0,0,0.05);
+  display: block;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 100rpx;
+  margin-bottom: 30rpx;
+  display: block;
+}
+
+.empty-text {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16rpx;
+  display: block;
+}
+
+.empty-desc {
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 40rpx;
+  display: block;
+}
+
+.btn-primary {
+  background: #1890ff;
+  color: #fff;
+  width: 300rpx;
+  border-radius: 40rpx;
+  margin: 0 auto;
+  display: block;
+}

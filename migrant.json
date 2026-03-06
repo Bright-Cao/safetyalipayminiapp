@@ -1,0 +1,19 @@
+{
+  "project": {
+    "originProjectUrl": "/Users/cml/CodeBuddy/20260105153022",
+    "newProjectUrl": "/Users/cml/Documents/20260105153022_migrant_1772376920121",
+    "covertCacheDir": "/Users/cml/.migrant-cache/20260105153022_migrant_1772376920121"
+  },
+  "config": {
+    "uploadDirIgnorePatterns": [
+      "node_modules",
+      "migrant.json",
+      "migrant.stage.json"
+    ]
+  },
+  "environment": {
+    "ideVersion": "3.10.10",
+    "os": "darwin",
+    "timestamp": 1772376920163
+  }
+}

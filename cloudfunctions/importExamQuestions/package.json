@@ -1,0 +1,9 @@
+{
+    "name": "importExamQuestions",
+    "version": "1.0.0",
+    "description": "导入考试题目",
+    "main": "index.js",
+    "dependencies": {
+        "node-xlsx": "^0.21.0"
+    }
+}

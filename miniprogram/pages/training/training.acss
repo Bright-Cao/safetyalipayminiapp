@@ -1,0 +1,226 @@
+/* pages/training/training.acss */
+.container {
+  background: #f5f5f5;
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+}
+
+/* ===== 总进度卡 ===== */
+.progress-card {
+  background: linear-gradient(135deg, #1677ff 0%, #0958d9 100%);
+  padding: 40rpx 40rpx 36rpx;
+  margin: 0;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+.progress-title {
+  color: rgba(255,255,255,0.9);
+  font-size: 28rpx;
+  font-weight: 500;
+}
+.progress-count {
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.progress-bar-bg {
+  background: rgba(255,255,255,0.25);
+  border-radius: 8rpx;
+  height: 16rpx;
+  overflow: hidden;
+  margin-bottom: 16rpx;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #52c41a, #95de64);
+  border-radius: 8rpx;
+  transition: width 0.6s ease;
+}
+
+.progress-footer {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+.progress-pct {
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.progress-tip {
+  color: rgba(255,255,255,0.8);
+  font-size: 24rpx;
+}
+
+/* ===== 视频列表 ===== */
+.video-list {
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.video-item {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+.video-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6rpx;
+  background: #e8e8e8;
+  border-radius: 3rpx 0 0 3rpx;
+}
+.video-item.watching::before { background: #1677ff; }
+.video-item.completed::before { background: #52c41a; }
+
+/* 缩略图 */
+.video-thumb {
+  width: 120rpx;
+  height: 90rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+.thumb-img {
+  width: 100%;
+  height: 100%;
+}
+.thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1677ff22, #0958d922);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.thumb-num {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #1677ff;
+}
+.complete-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #52c41a;
+  color: #fff;
+  font-size: 20rpx;
+  width: 36rpx;
+  height: 36rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 12rpx 0 12rpx;
+  font-weight: bold;
+}
+
+/* 内容 */
+.video-content {
+  flex: 1;
+  min-width: 0;
+}
+.video-title-text {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.4;
+  margin-bottom: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.video-meta {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 12rpx;
+}
+.video-category {
+  font-size: 22rpx;
+  background: #e6f4ff;
+  color: #1677ff;
+  padding: 2rpx 12rpx;
+  border-radius: 10rpx;
+}
+.video-duration {
+  font-size: 22rpx;
+  color: #999;
+}
+
+/* 小进度条 */
+.mini-progress-bg {
+  background: #f0f0f0;
+  border-radius: 4rpx;
+  height: 6rpx;
+  margin-bottom: 8rpx;
+  overflow: hidden;
+}
+.mini-progress-fill {
+  height: 100%;
+  background: #1677ff;
+  border-radius: 4rpx;
+}
+
+.video-status { font-size: 22rpx; }
+.status-done    { color: #52c41a; font-weight: 500; }
+.status-watching{ color: #1677ff; }
+.status-pending { color: #bbb; }
+
+.video-arrow {
+  font-size: 40rpx;
+  color: #ccc;
+  flex-shrink: 0;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 100rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+}
+.empty-icon { font-size: 80rpx; }
+.empty-text { font-size: 30rpx; color: #999; font-weight: 500; }
+.empty-sub  { font-size: 24rpx; color: #bbb; }
+
+/* 考试按钮 */
+.exam-btn-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24rpx 40rpx 40rpx;
+  background: linear-gradient(to top, #fff 70%, transparent);
+}
+.btn-exam {
+  width: 100%;
+  height: 96rpx;
+  background: linear-gradient(135deg, #52c41a, #389e0d);
+  color: #fff;
+  font-size: 34rpx;
+  font-weight: bold;
+  border-radius: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(82,196,26,0.4);
+}

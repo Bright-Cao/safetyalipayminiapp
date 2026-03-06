@@ -1,0 +1,22 @@
+{
+  "format": 2,
+  "miniprogramRoot": "miniprogram",
+  "cloudfunctionRoot": "cloudfunctions",
+  "compileOptions": {
+    "component2": true,
+    "enableNodeModuleBabel": false
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "logintest",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null,
+          "launchMode": "default"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "initDatabase",
+  "version": "1.0.0",
+  "description": "初始化数据库集合",
+  "main": "index.js",
+  "dependencies": {
+  }
+}
