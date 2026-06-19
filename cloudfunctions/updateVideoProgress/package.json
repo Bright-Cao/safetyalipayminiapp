@@ -1,8 +1,0 @@
-{
-  "name": "updateVideoProgress",
-  "version": "1.0.0",
-  "description": "更新视频观看进度",
-  "main": "index.js",
-  "dependencies": {
-  }
-}

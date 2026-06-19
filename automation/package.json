@@ -1,0 +1,11 @@
+{
+  "name": "shasteel-daily-practice-automation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "daily-practice": "node daily-practice.js"
+  },
+  "dependencies": {
+    "playwright": "^1.52.0"
+  }
+}

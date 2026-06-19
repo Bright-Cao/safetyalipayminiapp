@@ -1,7 +1,0 @@
-{
-  "name": "login",
-  "version": "1.0.0",
-  "description": "用户手机号登录",
-  "main": "index.js",
-  "dependencies": {}
-}

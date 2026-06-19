@@ -1,8 +1,0 @@
-{
-  "name": "getStatistics",
-  "version": "1.0.0",
-  "description": "获取统计数据",
-  "main": "index.js",
-  "dependencies": {
-  }
-}

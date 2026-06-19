@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>有限空间气体检测助手</title>
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --panel: #fffaf2;
+      --panel-strong: #fff;
+      --ink: #1f2a24;
+      --muted: #55625b;
+      --line: #d8cdbb;
+      --brand: #0f766e;
+      --brand-soft: #d9f2ef;
+      --accent: #b45309;
+      --accent-soft: #ffedd5;
+      --danger: #b91c1c;
+      --shadow: 0 16px 40px rgba(48, 38, 20, 0.09);
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, #fff7df 0%, transparent 28%),
+        radial-gradient(circle at bottom right, #d7efe8 0%, transparent 22%),
+        linear-gradient(180deg, #f7f2e9 0%, #efe5d4 100%);
+      min-height: 100vh;
+    }
+
+    .shell {
+      width: calc(100% - 32px);
+      max-width: 1180px;
+      margin: 24px auto 48px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(15, 118, 110, 0.92), rgba(20, 66, 60, 0.96));
+      color: #f7fffd;
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -60px;
+      bottom: -60px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      margin: 8px 0;
+      max-width: 760px;
+      color: rgba(247, 255, 253, 0.92);
+      line-height: 1.7;
+    }
+
+    .hero-note {
+      margin-top: 16px;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 22px;
+      margin-top: 22px;
+    }
+
+    .card {
+      background: rgba(255, 250, 242, 0.92);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(216, 205, 187, 0.9);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+    }
+
+    .subtle {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .steps {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 14px;
+      border-radius: 16px;
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      font-weight: 800;
+    }
+
+    .badge-row,
+    .rule-list,
+    .output-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      width: auto;
+    }
+
+    .rule,
+    .output-item {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fffefb;
+      color: var(--ink);
+      font-size: 15px;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      outline: 2px solid rgba(15, 118, 110, 0.18);
+      border-color: var(--brand);
+    }
+
+    .action-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 800;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .primary {
+      background: var(--brand);
+      color: #fff;
+    }
+
+    .secondary {
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .result {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fffefc, #f8f1e5);
+      border: 1px solid var(--line);
+    }
+
+    .result h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .compat-tip {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #fff7e8;
+      border: 1px solid #efd7ac;
+      color: #7b5a27;
+      line-height: 1.7;
+    }
+
+    .diagram-empty {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .summary {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .pill.warn {
+      background: #fee2e2;
+      color: var(--danger);
+    }
+
+    .diagram {
+      margin-top: 18px;
+      background: #fff;
+      border: 1px dashed #c5b7a2;
+      border-radius: 18px;
+      padding: 18px;
+      overflow-x: auto;
+      overflow-y: visible;
+    }
+
+    .shaft {
+      position: relative;
+      margin: 0;
+      width: 190px;
+      max-width: 100%;
+      height: 320px;
+      border: 3px solid #2b4b47;
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fbf4e5 0%, #ebdbc0 100%);
+      overflow: visible;
+      flex: 0 0 auto;
+    }
+
+    .shaft-wrap {
+      width: 620px;
+      min-width: 620px;
+      margin: 12px auto;
+      padding: 18px 360px 18px 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: visible;
+    }
+
+    .point {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--brand);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      border: 3px solid #fff;
+      box-shadow: 0 8px 16px rgba(15, 118, 110, 0.24);
+    }
+
+    .point-label {
+      position: absolute;
+      left: calc(50% + 54px);
+      transform: translateY(50%);
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid #cfd8d5;
+      color: #24433f;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .v-dim-line {
+      position: absolute;
+      width: 0;
+      border-right: 2px solid #355a56;
+    }
+
+    .v-dim-line::before,
+    .v-dim-line::after {
+      content: "";
+      position: absolute;
+      right: -7px;
+      width: 12px;
+      height: 12px;
+      border-top: 2px solid #355a56;
+      border-right: 2px solid #355a56;
+      background: transparent;
+    }
+
+    .v-dim-line::before {
+      top: 0;
+      transform: translateY(-1px) rotate(-45deg);
+    }
+
+    .v-dim-line::after {
+      bottom: 0;
+      transform: translateY(1px) rotate(135deg);
+    }
+
+    .v-dim-text {
+      position: absolute;
+      width: 88px;
+      transform: translateY(-50%);
+      text-align: center;
+      padding: 3px 6px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid #d6d9d7;
+      color: #355a56;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .v-boundary-label {
+      position: absolute;
+      left: calc(50% + 54px);
+      transform: translateY(-50%);
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid #d6d9d7;
+      color: #355a56;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .tunnel {
+      position: relative;
+      margin: 0;
+      width: 420px;
+      height: 120px;
+      border: 3px solid #7c4a12;
+      border-radius: 22px;
+      background: linear-gradient(90deg, #fff7ed 0%, #f5dcc0 100%);
+      overflow: visible;
+      flex: 0 0 auto;
+    }
+
+    .tunnel-wrap {
+      width: 620px;
+      min-width: 620px;
+      margin: 18px auto 8px;
+      padding: 88px 32px 72px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: visible;
+    }
+
+    .tunnel-entry {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 70px;
+      background: rgba(15, 118, 110, 0.14);
+      border-right: 2px dashed rgba(15, 118, 110, 0.4);
+    }
+
+    .h-point {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #b45309;
+      color: #fff;
+      font-weight: 800;
+      border: 3px solid #fff;
+      box-shadow: 0 8px 16px rgba(180, 83, 9, 0.24);
+    }
+
+    .h-point-label {
+      position: absolute;
+      top: calc(100% + 10px);
+      transform: translateX(-50%);
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid #e3d6c4;
+      color: #7c4a12;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .h-dim-line {
+      position: absolute;
+      top: -42px;
+      height: 0;
+      border-top: 2px solid #7c4a12;
+    }
+
+    .h-dim-line::before,
+    .h-dim-line::after {
+      content: "";
+      position: absolute;
+      top: -7px;
+      width: 12px;
+      height: 12px;
+      border-top: 2px solid #7c4a12;
+      border-right: 2px solid #7c4a12;
+      background: transparent;
+    }
+
+    .h-dim-line::before {
+      left: 0;
+      transform: translateX(-1px) rotate(-135deg);
+    }
+
+    .h-dim-line::after {
+      right: 0;
+      transform: translateX(1px) rotate(45deg);
+    }
+
+    .h-dim-text {
+      position: absolute;
+      top: -70px;
+      transform: translateX(-50%);
+      padding: 3px 8px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid #ead9bf;
+      color: #7c4a12;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+      line-height: 1.2;
+    }
+
+    .h-boundary-label {
+      position: absolute;
+      top: -6px;
+      transform: translateX(-50%);
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid #e3d6c4;
+      color: #7c4a12;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .legend {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .footer {
+      margin-top: 20px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: #fff8ee;
+      border: 1px solid #ead9bf;
+      color: #6c5538;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 920px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .shell {
+        width: calc(100% - 20px);
+        margin: 10px auto 28px;
+      }
+
+      .hero,
+      .card {
+        padding: 18px;
+      }
+
+      .diagram {
+        padding: 14px;
+      }
+
+      .shaft-wrap {
+        min-width: 560px;
+        padding: 18px 320px 18px 12px;
+        margin: 8px 0;
+      }
+
+      .tunnel-wrap {
+        min-width: 560px;
+        width: 560px;
+        padding: 116px 16px 72px;
+        margin: 8px 0;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+
+    @media (min-width: 681px) {
+      .hero h1 {
+        font-size: 42px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <section class="hero">
+      <h1>有限空间气体检测助手</h1>
+      <p>面向现场检测人员的离线速查工具。根据你输入的空间方向和尺寸，自动给出检测点位建议、点位顺序，以及“从入口开始、沿人员进入方向、竖直上到下、水平近到远”的执行提示。</p>
+      <p>当前页面依据你提供的 GB46768-2025 第 5.8.6 节内容制作，适合做培训展示、现场快速判定和后续打包为桌面程序。</p>
+      <div class="hero-note">适合直接双击打开，也适合后续封装为 `exe`</div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>检测顺序速记</h2>
+        <p class="subtle">进入有限空间前，应从入口开始，沿人员进入有限空间的方向进行检测。安排点位和执行顺序时，可以按下面的逻辑操作。</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div>
+              <strong>先定方向</strong>
+              <div class="subtle">判断本次检测主要属于竖直方向还是水平方向，明确人员进入路径。</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div>
+              <strong>入口起测</strong>
+              <div class="subtle">所有检测均从入口侧开始布置和执行，不从空间深处或底部倒推。</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div>
+              <strong>竖直上到下</strong>
+              <div class="subtle">竖直方向检测时，从上部点位开始，依次向中部、下部推进。</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <div>
+              <strong>水平近到远</strong>
+              <div class="subtle">水平方向检测时，从靠近入口的近端点开始，再向远端点推进。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>规则摘要</h2>
+        <div class="badge-row">
+          <span class="badge">竖直检测</span>
+        </div>
+        <div class="rule-list">
+          <div class="rule">检测点数量不少于 3 个。</div>
+          <div class="rule">上、下检测点距离顶部和底部均不应超过 1m。</div>
+          <div class="rule">中间检测点均匀分布，相邻检测点距离不应超过 8m。</div>
+          <div class="rule">若竖向距离不足 2m，应设置上、下 2 个点。</div>
+        </div>
+
+        <div class="badge-row" style="margin-top:16px">
+          <span class="badge">水平检测</span>
+        </div>
+        <div class="rule-list">
+          <div class="rule">检测点数量不少于 2 个。</div>
+          <div class="rule">近端点距离入口不应小于 0.5m。</div>
+          <div class="rule">远端点距离入口不应小于 2m。</div>
+          <div class="rule">若横向距离不足 2m，远端点应选取最远处。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>点位自动计算</h2>
+        <p class="subtle">输入方向和尺寸后，系统会自动给出建议点位。这里采用“满足你给出的条文要求”的保守布点逻辑，便于现场快速参考。</p>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="mode">检测方向</label>
+            <select id="mode">
+              <option value="vertical">竖直方向</option>
+              <option value="horizontal">水平方向</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="distance">空间距离（m）</label>
+            <input id="distance" type="number" min="0.1" step="0.1" value="6" inputmode="decimal">
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button class="primary" id="calcBtn">生成检测方案</button>
+          <button class="secondary" id="resetBtn">恢复默认</button>
+        </div>
+
+        <div class="result" id="result">
+          <h3>检测建议</h3>
+          <div class="summary" id="summary">
+            <span class="pill warn">如果这里没有自动生成内容，请改用浏览器打开</span>
+          </div>
+          <div class="output-list" id="output">
+            <div class="output-item"><strong>手机打开提示：</strong>如果页面上方表单能看到，但这里始终是空白，通常不是文件损坏，而是当前预览器没有执行 HTML 脚本。</div>
+            <div class="output-item"><strong>推荐方式：</strong>请用 Safari、Chrome 或微信里的网页链接打开；WPS、聊天附件预览、部分文件预览通常只显示静态内容。</div>
+          </div>
+          <div class="diagram" id="diagram">
+            <div class="diagram-empty">脚本正常运行后，这里会自动显示点位建议和示意图。</div>
+          </div>
+          <noscript>
+            <div class="compat-tip"><strong>当前打开方式未启用脚本。</strong> 这个页面的自动计算依赖浏览器脚本，请改用 Safari、Chrome 或可正常运行网页脚本的浏览器打开。</div>
+          </noscript>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>使用建议</h2>
+        <div class="output-list">
+          <div class="output-item"><strong>培训用途：</strong>把本页放在平板、工控机或手机浏览器中，现场直接输入尺寸即可查看布点顺序。</div>
+          <div class="output-item"><strong>现场用途：</strong>可让检测员先按本页确认“先测哪里、后测哪里”，再结合仪器要求完成各气体项目检测。</div>
+          <div class="output-item"><strong>扩展方向：</strong>后续可继续加入氧气、可燃气、有毒气体项目的录入、合格判定、检测记录导出和打印。</div>
+          <div class="output-item"><strong>打包方向：</strong>这个单文件页面后续可以用 `WebView2 + Python`、`Electron` 或 `Tauri` 打包成 `exe`。</div>
+        </div>
+
+        <div class="footer">
+          注意：本工具当前仅根据你提供的 5.8.6 条文内容制作，用于帮助理解检测顺序和点位安排，不替代完整标准、作业审批制度和现场风险辨识要求。
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      var modeEl = document.getElementById("mode");
+      var distanceEl = document.getElementById("distance");
+      var calcBtn = document.getElementById("calcBtn");
+      var resetBtn = document.getElementById("resetBtn");
+      var summaryEl = document.getElementById("summary");
+      var outputEl = document.getElementById("output");
+      var diagramEl = document.getElementById("diagram");
+
+      function isFiniteNumber(value) {
+        return typeof value === "number" && isFinite(value);
+      }
+
+      function isWholeNumber(value) {
+        return Math.floor(value) === value;
+      }
+
+      function formatNum(value) {
+        var rounded = Math.round(value * 10) / 10;
+        return isWholeNumber(rounded) ? String(rounded) : rounded.toFixed(1);
+      }
+
+      function showOpenTip(extraText) {
+        summaryEl.innerHTML = '<span class="pill warn">当前打开方式可能没有执行脚本</span>';
+        outputEl.innerHTML =
+          '<div class="output-item"><strong>手机打开提示：</strong>如果页面布局能看到，但自动结果一直不出来，通常是当前预览器没有执行 HTML 脚本。' +
+          (extraText ? extraText : '') +
+          '</div>' +
+          '<div class="output-item"><strong>推荐方式：</strong>请用 Safari、Chrome 或微信里的网页链接打开；WPS、聊天附件预览、部分文件预览通常只显示静态内容。</div>';
+        diagramEl.innerHTML = '<div class="diagram-empty">脚本正常运行后，这里会自动显示点位建议和示意图。</div>';
+      }
+
+      function verticalPlan(distance) {
+        if (distance < 2) {
+          return {
+            direction: "竖直方向",
+            count: 2,
+            order: "从上至下",
+            warning: "竖向距离不足 2m，按条文采用上、下 2 点检测。",
+            points: [
+              { name: "上点", position: Math.max(0, distance - 1), note: "距顶部不超过 1m，先测。" },
+              { name: "下点", position: Math.min(1, distance), note: "距底部不超过 1m，后测。" }
+            ]
+          };
+        }
+
+        var topPoint = distance - 1;
+        var bottomPoint = 1;
+        var spanBetweenTopAndBottom = topPoint - bottomPoint;
+        var totalPoints = 3;
+        var interval = spanBetweenTopAndBottom / (totalPoints - 1);
+        var points = [];
+        var i;
+
+        while (interval > 8) {
+          totalPoints += 1;
+          interval = spanBetweenTopAndBottom / (totalPoints - 1);
+        }
+
+        for (i = 0; i < totalPoints; i += 1) {
+          var positionFromBottom = bottomPoint + interval * i;
+          var name = "中间点";
+          var note = "中间点均匀分布。";
+
+          if (i === totalPoints - 1) {
+            name = "上点";
+            note = "距顶部不超过 1m，竖向检测先测。";
+          } else if (i === 0) {
+            name = "下点";
+            note = "距底部不超过 1m，竖向检测最后测。";
+          } else if (totalPoints > 3) {
+            name = "中间点" + i;
+          }
+
+          points.push({
+            name: name,
+            position: positionFromBottom,
+            note: note
+          });
+        }
+
+        return {
+          direction: "竖直方向",
+          count: totalPoints,
+          order: "从上至下",
+          warning: "已按不少于 3 点、上下一端距顶底不超过 1m、中间点均匀分布且相邻点间距不超过 8m 生成。",
+          points: points.slice().reverse()
+        };
+      }
+
+      function horizontalPlan(distance) {
+        var farPoint = distance < 2 ? distance : 2;
+        return {
+          direction: "水平方向",
+          count: 2,
+          order: "由近至远",
+          warning: distance < 2
+            ? "横向距离不足 2m，远端点已按最远处选取。"
+            : "已按近端点不少于 0.5m、远端点不少于 2m 生成。",
+          points: [
+            { name: "近端点", position: Math.max(0.5, Math.min(distance, 0.5)), note: "靠近入口，但不小于 0.5m，先测。" },
+            { name: "远端点", position: farPoint, note: distance < 2 ? "空间最远处，后测。" : "距入口不小于 2m，后测。" }
+          ]
+        };
+      }
+
+      function renderVerticalDiagram(plan, distance) {
+        var pointsWithMetrics = [];
+        var pointsHtml = "";
+        var dims = [];
+        var dimHtml = "";
+        var i;
+        var topGap;
+        var bottomGap;
+        var totalDimOffset;
+
+        for (i = 0; i < plan.points.length; i += 1) {
+          var point = plan.points[i];
+          var fromBottom = point.position / distance;
+          var bottomPercent = Math.max(4, Math.min(96, fromBottom * 100));
+          pointsWithMetrics.push({
+            point: point,
+            index: i,
+            bottomPercent: bottomPercent
+          });
+          pointsHtml +=
+            '<div class="point" style="bottom:' + bottomPercent + '%">' + (i + 1) + '</div>' +
+            '<div class="point-label" style="bottom:' + bottomPercent + '%">' + point.name + '</div>';
+        }
+
+        topGap = Math.max(0, distance - plan.points[0].position);
+        bottomGap = Math.max(0, plan.points[plan.points.length - 1].position);
+
+        dims.push({
+          start: 100,
+          end: pointsWithMetrics[0].bottomPercent,
+          text: "<=" + formatNum(topGap) + "m"
+        });
+
+        for (i = 0; i < pointsWithMetrics.length - 1; i += 1) {
+          dims.push({
+            start: pointsWithMetrics[i].bottomPercent,
+            end: pointsWithMetrics[i + 1].bottomPercent,
+            text: formatNum(pointsWithMetrics[i].point.position - pointsWithMetrics[i + 1].point.position) + "m"
+          });
+        }
+
+        dims.push({
+          start: pointsWithMetrics[pointsWithMetrics.length - 1].bottomPercent,
+          end: 0,
+          text: "<=" + formatNum(bottomGap) + "m"
+        });
+
+        for (i = 0; i < dims.length; i += 1) {
+          var topPercent = 100 - dims[i].start;
+          var heightPercent = Math.max(0, dims[i].start - dims[i].end);
+          var centerPercent = 100 - ((dims[i].start + dims[i].end) / 2);
+          var offset = 42 + i * 24;
+          dimHtml +=
+            '<div class="v-dim-line" style="top:' + topPercent + '%;height:' + heightPercent + '%;right:-' + offset + 'px"></div>' +
+            '<div class="v-dim-text" style="top:' + centerPercent + '%;right:-' + (offset + 94) + 'px">' + dims[i].text + '</div>';
+        }
+
+        totalDimOffset = 42 + dims.length * 24;
+
+        diagramEl.innerHTML =
+          '<strong>竖直方向示意</strong>' +
+          '<div class="shaft-wrap">' +
+            '<div class="shaft">' +
+              '<div class="v-boundary-label" style="top:0%">顶部</div>' +
+              '<div class="v-boundary-label" style="top:100%">底部</div>' +
+              pointsHtml +
+              dimHtml +
+              '<div class="v-dim-line" style="top:0;height:100%;right:-' + (totalDimOffset + 18) + 'px"></div>' +
+              '<div class="v-dim-text" style="top:50%;right:-' + (totalDimOffset + 112) + 'px">总高 ' + formatNum(distance) + 'm</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="legend">右侧按工程图思路标出分段尺寸和总高度，检测顺序：上点 → 中间点 → 下点。</div>';
+      }
+
+      function renderHorizontalDiagram(plan, distance) {
+        var minLeft = 8;
+        var maxLeft = 92;
+        var minGap = 18;
+        var rawPercents = [];
+        var displayPercents = [];
+        var pointsHtml = "";
+        var dimHtml = "";
+        var dims;
+        var i;
+
+        for (i = 0; i < plan.points.length; i += 1) {
+          var left = distance === 0 ? 0 : (plan.points[i].position / distance) * 100;
+          rawPercents.push(Math.max(minLeft, Math.min(maxLeft, left)));
+        }
+
+        for (i = 0; i < rawPercents.length; i += 1) {
+          var adjusted = rawPercents[i];
+          if (i > 0) {
+            adjusted = Math.max(adjusted, displayPercents[i - 1] + minGap);
+          }
+          displayPercents.push(Math.min(adjusted, maxLeft - (rawPercents.length - 1 - i) * minGap));
+        }
+
+        for (i = 0; i < plan.points.length; i += 1) {
+          pointsHtml +=
+            '<div class="h-point" style="left:' + displayPercents[i] + '%">' + (i + 1) + '</div>' +
+            '<div class="h-point-label" style="left:' + displayPercents[i] + '%">' + plan.points[i].name + '</div>';
+        }
+
+        dims = [
+          {
+            start: 0,
+            end: displayPercents[0],
+            text: formatNum(plan.points[0].position) + "m"
+          },
+          {
+            start: displayPercents[0],
+            end: displayPercents[1],
+            text: formatNum(plan.points[1].position - plan.points[0].position) + "m"
+          },
+          {
+            start: displayPercents[1],
+            end: 100,
+            text: formatNum(Math.max(0, distance - plan.points[1].position)) + "m"
+          }
+        ];
+
+        for (i = 0; i < dims.length; i += 1) {
+          var offset = 42 + i * 28;
+          var width = Math.max(0, dims[i].end - dims[i].start);
+          var center = (dims[i].start + dims[i].end) / 2;
+          dimHtml +=
+            '<div class="h-dim-line" style="top:-' + offset + 'px;left:' + dims[i].start + '%;width:' + width + '%"></div>' +
+            '<div class="h-dim-text" style="top:-' + (offset + 30) + 'px;left:' + center + '%">' + dims[i].text + '</div>';
+        }
+
+        diagramEl.innerHTML =
+          '<strong>水平方向示意</strong>' +
+          '<div class="tunnel-wrap">' +
+            '<div class="tunnel">' +
+              '<div class="tunnel-entry"></div>' +
+              '<div class="h-boundary-label" style="left:0%">入口</div>' +
+              '<div class="h-boundary-label" style="left:100%">最远端</div>' +
+              dimHtml +
+              '<div class="h-dim-line" style="top:-' + (42 + dims.length * 28 + 14) + 'px;left:0;width:100%"></div>' +
+              '<div class="h-dim-text" style="top:-' + (42 + dims.length * 28 + 44) + 'px;left:50%">总长 ' + formatNum(distance) + 'm</div>' +
+              pointsHtml +
+            '</div>' +
+          '</div>' +
+          '<div class="legend">上方按工程图思路标出入口到近端点、近远点间距和总长度，检测顺序：近端点 → 远端点。</div>';
+      }
+
+      function renderDiagram(mode, plan, distance) {
+        if (mode === "vertical") {
+          renderVerticalDiagram(plan, distance);
+        } else {
+          renderHorizontalDiagram(plan, distance);
+        }
+      }
+
+      function renderPlan() {
+        var mode = modeEl.value;
+        var distance = Number(distanceEl.value);
+        var plan;
+        var pointItems = "";
+        var orderText;
+        var i;
+
+        if (!isFiniteNumber(distance) || distance <= 0) {
+          summaryEl.innerHTML = '<span class="pill warn">请输入大于 0 的距离</span>';
+          outputEl.innerHTML = '<div class="output-item">请先填写有效的空间距离。</div>';
+          diagramEl.innerHTML = '<div class="diagram-empty">填写有效距离后，这里会显示检测示意图。</div>';
+          return;
+        }
+
+        plan = mode === "vertical" ? verticalPlan(distance) : horizontalPlan(distance);
+
+        summaryEl.innerHTML =
+          '<span class="pill">' + plan.direction + '</span>' +
+          '<span class="pill">检测点 ' + plan.count + ' 个</span>' +
+          '<span class="pill">' + plan.order + '</span>' +
+          '<span class="pill warn">' + plan.warning + '</span>';
+
+        for (i = 0; i < plan.points.length; i += 1) {
+          pointItems +=
+            '<div class="output-item">' +
+              '<strong>第 ' + (i + 1) + ' 点：' + plan.points[i].name + '</strong><br>' +
+              '图中已标注：' + (mode === "vertical" ? '距底部 ' : '距入口 ') + formatNum(plan.points[i].position) + 'm<br>' +
+              plan.points[i].note +
+            '</div>';
+        }
+
+        orderText = mode === "vertical"
+          ? "执行顺序：从入口开始，沿人员进入方向，在竖直方向按上、中、下顺序检测。"
+          : "执行顺序：从入口开始，沿人员进入方向，在水平方向按近、远顺序检测。";
+
+        outputEl.innerHTML =
+          '<div class="output-item"><strong>执行提示：</strong>' + orderText + '</div>' +
+          pointItems;
+
+        renderDiagram(mode, plan, distance);
+      }
+
+      function init() {
+        if (!modeEl || !distanceEl || !calcBtn || !resetBtn || !summaryEl || !outputEl || !diagramEl) {
+          return;
+        }
+
+        try {
+          calcBtn.addEventListener("click", renderPlan);
+          resetBtn.addEventListener("click", function () {
+            modeEl.value = "vertical";
+            distanceEl.value = 6;
+            renderPlan();
+          });
+          modeEl.addEventListener("change", renderPlan);
+          renderPlan();
+        } catch (error) {
+          showOpenTip(" 建议改用手机浏览器直接打开网页地址。");
+        }
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>

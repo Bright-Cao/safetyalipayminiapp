@@ -1,0 +1,57 @@
+#!/usr/bin/expect -f
+
+set timeout 30
+set ip "47.76.215.197"
+set password "your_password_here"
+
+send_user "\n======================================\n"
+send_user "🌟 【二期工程：车间面试与特批流程】 自动化推送\n"
+send_user "======================================\n\n"
+
+send_user "请输入云服务器 root 密码 (输入时不显示字符): "
+stty -echo
+expect_user -re "(.*)\n"
+set password $expect_out(1,string)
+stty echo
+
+send_user "\n\n🚀 收到密码！正在将 [二期工程代码库] 推送至阿里云并重启底层架构...\n"
+
+# 1. SCP
+spawn scp -o StrictHostKeyChecking=no /Users/cml/Documents/20260105153022_migrant_1772376920121/deploy_p2.zip root@$ip:/root/
+expect {
+    "*assword:*" {
+        send "$password\r"
+        exp_continue
+    }
+    timeout {
+        send_user "\n⚠️ 上传超时\n"
+        exit 1
+    }
+    eof {
+        send_user "✅ 上传第二期架构引擎成功！\n"
+    }
+}
+
+# 2. Deploy Script
+spawn ssh -o StrictHostKeyChecking=no root@$ip "cd /root && unzip -o deploy_p2.zip -d safe_project_p2 && yes | cp -r safe_project_p2/h5-frontend/dist /var/www/safe_project/h5-frontend/ && yes | cp -r safe_project_p2/h5-backend/* /var/www/safe_project/h5-backend/ && chown -R www-data:www-data /var/www/safe_project && cd /var/www/safe_project/h5-backend && pm2 restart all"
+
+expect {
+    "*assword:*" {
+        send "$password\r"
+        exp_continue
+    }
+    timeout {
+        send_user "\n⚠️ 部署超时\n"
+        exit 1
+    }
+    eof {
+        send_user "\n========================================================================\n"
+        send_user "🎉 【二期升级成功！】\n"
+        send_user "全新功能已上线: \n"
+        send_user "1) 表单申请区已增设: 监护人，班组长，主要负责人，专职安全员选项。\n"
+        send_user "2) 车间主任可见专属打分审批界面！\n"
+        send_user "3) 免考与必考特批流完全开启。\n"
+        send_user "========================================================================\n"
+        exit 0
+    }
+}

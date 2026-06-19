@@ -1,8 +1,0 @@
-{
-  "name": "checkGuardian",
-  "version": "1.0.0",
-  "description": "查询监护人资质",
-  "main": "index.js",
-  "dependencies": {
-  }
-}

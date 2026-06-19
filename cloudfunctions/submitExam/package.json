@@ -1,8 +1,0 @@
-{
-  "name": "submitExam",
-  "version": "1.0.0",
-  "description": "提交考试答案",
-  "main": "index.js",
-  "dependencies": {
-  }
-}

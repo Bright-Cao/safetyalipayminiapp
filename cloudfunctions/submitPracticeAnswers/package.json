@@ -1,8 +1,0 @@
-{
-    "name": "submitPracticeAnswers",
-    "version": "1.0.0",
-    "description": "提交练习题答案",
-    "main": "index.js",
-    "dependencies": {
-    }
-}

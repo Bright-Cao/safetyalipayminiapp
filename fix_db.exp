@@ -1,0 +1,32 @@
+#!/usr/bin/expect -f
+
+set timeout 30
+set ip "47.76.215.197"
+set password "your_password_here"
+
+# Ask user for password securely without saving it anywhere
+send_user "请输入云服务 root 密码 (输入时不显示字符): "
+stty -echo
+expect_user -re "(.*)\n"
+set password $expect_out(1,string)
+stty echo
+send_user "\n\n🚀 收到密码，正在全自动登录并修复数据库！请耐心等待十几秒...\n"
+
+spawn ssh -o StrictHostKeyChecking=no root@$ip "apt-get install -y mongodb-org && systemctl start mongod && systemctl enable mongod && pm2 restart all"
+
+expect {
+    "*assword:*" {
+        send "$password\r"
+        exp_continue
+    }
+    timeout {
+        send_user "\n⚠️ 连接超时，请检查网络\n"
+        exit 1
+    }
+    eof {
+        send_user "\n======================================\n"
+        send_user "✅ 全自动修复完成！现在回去刷新网页吧！\n"
+        send_user "======================================\n"
+        exit 0
+    }
+}
