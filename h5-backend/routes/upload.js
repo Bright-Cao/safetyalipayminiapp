@@ -7,6 +7,7 @@ const { spawn } = require('child_process');
 const router = express.Router();
 
 const authMiddleware = require('../middleware/authMiddleware');
+const { PptTask, Video } = require('../models');
 
 // OSS 客户端
 let ossClient = null;
@@ -29,9 +30,6 @@ const LOCAL_UPLOAD_DIR = path.join(__dirname, '..', '..', 'uploads', 'videos');
 if (!ossClient) {
   fs.mkdirSync(LOCAL_UPLOAD_DIR, { recursive: true });
 }
-
-// 内存中记录 PPT 转换任务状态
-const pptTasks = new Map();
 
 // 支持的视频格式
 const ALLOWED_EXTS = ['.mp4', '.mov', '.avi', '.mkv', '.m4v', '.webm', '.flv', '.wmv'];
@@ -88,7 +86,7 @@ const uploadPpt = multer({
   }
 });
 
-// POST /api/upload/video (已有常规视频上传)
+// POST /api/upload/video (常规视频上传)
 router.post('/video', authMiddleware, (req, res, next) => {
   if (!req.user || !['safety_admin', 'super_admin'].includes(req.user.role)) {
     return res.status(403).json({ success: false, message: '权限不足' });
@@ -135,7 +133,7 @@ router.post('/video', authMiddleware, (req, res, next) => {
   }
 });
 
-// POST /api/upload/ppt (PPT 转视频处理接口)
+// POST /api/upload/ppt (提交异步 PPT 转视频任务)
 router.post('/ppt', authMiddleware, (req, res, next) => {
   if (!req.user || !['safety_admin', 'super_admin'].includes(req.user.role)) {
     return res.status(403).json({ success: false, message: '权限不足' });
@@ -151,98 +149,168 @@ router.post('/ppt', authMiddleware, (req, res, next) => {
     return res.json({ success: false, message: '未收到文件，请选择 PPTX 演示文稿' });
   }
 
+  const title = (req.body.title || req.file.originalname.replace(/\.[^/.]+$/, "")).trim();
+  const voice = req.body.voice || 'zh-CN-XiaoxiaoNeural';
+  const rate = req.body.rate || '+0%';
+
   const pptxPath = req.file.path;
-  const taskId = `ppt_task_${Date.now()}`;
+  const taskId = `ppt_${Date.now()}`;
   const outFileName = `${Date.now()}_ppt_converted.mp4`;
   const outputVideoPath = path.join(LOCAL_UPLOAD_DIR, outFileName);
   const fileId = `videos/${outFileName}`;
   const videoUrl = `/uploads/videos/${outFileName}`;
 
-  // 初始化任务状态
-  pptTasks.set(taskId, {
-    progress: 5,
-    status: '已接收 PPT，准备启动转换...',
-    completed: false,
-    error: null,
-    url: null,
-    file_id: null
-  });
+  try {
+    // 写入 DB 任务记录
+    const taskDoc = await PptTask.create({
+      title,
+      original_filename: req.file.originalname,
+      task_id: taskId,
+      voice,
+      rate,
+      status: '排队启动转换中...',
+      progress: 5,
+      completed: false
+    });
 
-  // 异步启动 Python 转换进程
-  const venvPython = path.join(__dirname, '..', 'ppt2video_env', 'bin', 'python3');
-  const pythonBin = fs.existsSync(venvPython) ? venvPython : 'python3';
-  const scriptPath = path.join(__dirname, '..', 'services', 'ppt2video', 'converter.py');
+    // 启动 Python 转换后台子进程
+    const venvPython = path.join(__dirname, '..', 'ppt2video_env', 'bin', 'python3');
+    const pythonBin = fs.existsSync(venvPython) ? venvPython : 'python3';
+    const scriptPath = path.join(__dirname, '..', 'services', 'ppt2video', 'converter.py');
 
-  const pyProcess = spawn(pythonBin, [scriptPath, pptxPath, '--output', outputVideoPath]);
+    const pyProcess = spawn(pythonBin, [
+      scriptPath, pptxPath,
+      '--output', outputVideoPath,
+      '--voice', voice,
+      '--rate', rate
+    ]);
 
-  pyProcess.stdout.on('data', (data) => {
-    const lines = data.toString().split('\n');
-    for (const line of lines) {
-      if (!line.trim()) continue;
-      try {
-        const parsed = JSON.parse(line.trim());
-        if (parsed.progress !== undefined) {
-          pptTasks.set(taskId, {
-            ...pptTasks.get(taskId),
-            progress: parsed.progress,
-            status: parsed.status || '转换中...'
-          });
+    pyProcess.stdout.on('data', async (data) => {
+      const lines = data.toString().split('\n');
+      for (const line of lines) {
+        if (!line.trim()) continue;
+        try {
+          const parsed = JSON.parse(line.trim());
+          if (parsed.progress !== undefined) {
+            await PptTask.updateOne({ task_id: taskId }, {
+              progress: parsed.progress,
+              status: parsed.status || '转换中...'
+            });
+          }
+          if (parsed.error) {
+            await PptTask.updateOne({ task_id: taskId }, {
+              completed: true,
+              error: parsed.error,
+              status: '转换失败'
+            });
+          }
+        } catch (e) {
+          console.log('[PPT2Video Output]', line.trim());
         }
-        if (parsed.error) {
-          pptTasks.set(taskId, {
-            ...pptTasks.get(taskId),
+      }
+    });
+
+    pyProcess.stderr.on('data', (data) => {
+      console.error('[PPT2Video STDERR]', data.toString());
+    });
+
+    pyProcess.on('close', async (code) => {
+      // 删除临时 PPTX
+      fs.unlink(pptxPath, () => {});
+
+      if (code === 0 && fs.existsSync(outputVideoPath)) {
+        await PptTask.updateOne({ task_id: taskId }, {
+          progress: 100,
+          status: '转换完成！',
+          completed: true,
+          error: null,
+          url: videoUrl,
+          file_id: fileId
+        });
+      } else {
+        const task = await PptTask.findOne({ task_id: taskId });
+        if (task && !task.error) {
+          await PptTask.updateOne({ task_id: taskId }, {
             completed: true,
-            error: parsed.error,
+            error: `转换异常中止 (Exit Code: ${code})`,
             status: '转换失败'
           });
         }
-      } catch (e) {
-        console.log('[PPT2Video Python STDOUT]', line.trim());
       }
-    }
-  });
+    });
 
-  pyProcess.stderr.on('data', (data) => {
-    console.error('[PPT2Video Python STDERR]', data.toString());
-  });
+    return res.json({
+      success: true,
+      taskId,
+      message: 'PPT 转换任务已提交后台处理，无需保留在页面等待！'
+    });
 
-  pyProcess.on('close', (code) => {
-    // 删除临时上传的 PPTX
+  } catch (err) {
     fs.unlink(pptxPath, () => {});
-
-    if (code === 0 && fs.existsSync(outputVideoPath)) {
-      pptTasks.set(taskId, {
-        progress: 100,
-        status: '转换完成！',
-        completed: true,
-        error: null,
-        url: videoUrl,
-        file_id: fileId
-      });
-    } else {
-      const current = pptTasks.get(taskId);
-      if (!current.error) {
-        pptTasks.set(taskId, {
-          ...current,
-          completed: true,
-          error: `转换异常终止 (退出码: ${code})`,
-          status: '转换失败'
-        });
-      }
-    }
-  });
-
-  return res.json({ success: true, taskId, message: 'PPT 转换任务已启动' });
+    return res.json({ success: false, message: '提交失败: ' + err.message });
+  }
 });
 
-// GET /api/upload/ppt-status/:taskId (轮询 PPT 转换进度)
-router.get('/ppt-status/:taskId', authMiddleware, (req, res) => {
-  const { taskId } = req.params;
-  const task = pptTasks.get(taskId);
-  if (!task) {
-    return res.json({ success: false, message: '未找到对应任务' });
+// GET /api/upload/ppt-tasks (获取所有转换任务列表)
+router.get('/ppt-tasks', authMiddleware, async (req, res) => {
+  if (!req.user || !['safety_admin', 'super_admin'].includes(req.user.role)) {
+    return res.status(403).json({ success: false, message: '权限不足' });
   }
-  return res.json({ success: true, task });
+  try {
+    const tasks = await PptTask.find().sort({ create_time: -1 });
+    return res.json({ success: true, data: tasks });
+  } catch (e) {
+    return res.json({ success: false, message: e.message });
+  }
+});
+
+// POST /api/upload/publish-ppt (一键发布转换好的视频到课程库)
+router.post('/publish-ppt', authMiddleware, async (req, res) => {
+  if (!req.user || !['safety_admin', 'super_admin'].includes(req.user.role)) {
+    return res.status(403).json({ success: false, message: '权限不足' });
+  }
+  const { taskId } = req.body;
+  try {
+    const task = await PptTask.findOne({ task_id: taskId });
+    if (!task || !task.completed || !task.file_id) {
+      return res.json({ success: false, message: '任务尚未转换完成或无效' });
+    }
+    // 添加到 Video 视频库
+    await Video.create({
+      title: task.title,
+      file_id: task.file_id,
+      description: `由 PPT 《${task.original_filename || task.title}》 自动转换合成`,
+      status: 'active'
+    });
+    // 标记该任务为已发布
+    task.published = true;
+    await task.save();
+
+    return res.json({ success: true, message: '已成功发布到教学视频库！' });
+  } catch (e) {
+    return res.json({ success: false, message: e.message });
+  }
+});
+
+// POST /api/upload/delete-ppt-task (删除任务记录及生成文件)
+router.post('/delete-ppt-task', authMiddleware, async (req, res) => {
+  if (!req.user || !['safety_admin', 'super_admin'].includes(req.user.role)) {
+    return res.status(403).json({ success: false, message: '权限不足' });
+  }
+  const { taskId } = req.body;
+  try {
+    const task = await PptTask.findOne({ task_id: taskId });
+    if (task) {
+      if (task.file_id) {
+        const filePath = path.join(LOCAL_UPLOAD_DIR, path.basename(task.file_id));
+        fs.unlink(filePath, () => {});
+      }
+      await PptTask.deleteOne({ task_id: taskId });
+    }
+    return res.json({ success: true, message: '任务已删除' });
+  } catch (e) {
+    return res.json({ success: false, message: e.message });
+  }
 });
 
 module.exports = router;

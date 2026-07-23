@@ -24,7 +24,6 @@ def extract_notes(pptx_path):
         if slide.has_notes_slide and slide.notes_slide.notes_text_frame:
             note_text = slide.notes_slide.notes_text_frame.text.strip()
         if not note_text:
-            # Fallback to slide title or generic text if no note exists
             title = f"第{idx+1}页"
             if slide.shapes.title and slide.shapes.title.text:
                 title = slide.shapes.title.text.strip()
@@ -47,7 +46,6 @@ def convert_pptx_to_pdf(pptx_path, output_dir):
     base_name = os.path.splitext(os.path.basename(pptx_path))[0]
     pdf_path = os.path.join(output_dir, base_name + ".pdf")
     if not os.path.exists(pdf_path):
-        # Fallback check for any generated pdf
         for f in os.listdir(output_dir):
             if f.endswith(".pdf"):
                 return os.path.join(output_dir, f)
@@ -55,9 +53,9 @@ def convert_pptx_to_pdf(pptx_path, output_dir):
     return pdf_path
 
 def convert_pdf_to_images(pdf_path, output_dir):
-    """Converts PDF pages to PNG images using pdf2image."""
+    """Converts PDF pages to PNG images using pdf2image (dpi=120 for memory efficiency)."""
     report_progress(35, "正在将 PDF 渲染为高清图片...")
-    images = convert_from_path(pdf_path, dpi=150)
+    images = convert_from_path(pdf_path, dpi=120)
     image_paths = []
     for i, img in enumerate(images):
         img_path = os.path.join(output_dir, f"slide_{i+1}.png")
@@ -98,10 +96,10 @@ def compose_video(images, audio_files, output_path):
         codec="libx264",
         audio_codec="aac",
         preset="ultrafast",
+        ffmpeg_params=["-threads", "1"],
         logger=None
     )
 
-    # Close all clips
     final_clip.close()
     for c in clips:
         c.close()
