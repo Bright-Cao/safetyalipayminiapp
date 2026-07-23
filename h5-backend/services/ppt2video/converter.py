@@ -9,7 +9,8 @@ import json
 from pptx import Presentation
 from pdf2image import convert_from_path
 import edge_tts
-from moviepy import ImageClip, AudioFileClip, concatenate_videoclips
+from moviepy import ImageClip, AudioFileClip, VideoFileClip, CompositeVideoClip, concatenate_videoclips
+from PIL import Image
 
 def report_progress(percent, status):
     """Outputs JSON progress line for Node.js process listener."""
@@ -30,6 +31,52 @@ def extract_notes(pptx_path):
             note_text = title
         notes.append(note_text)
     return notes
+
+def extract_all_gifs(pptx_path, output_dir):
+    """Scans PPTX slides and extracts animated GIF files with coordinates."""
+    gif_data = []
+    try:
+        prs = Presentation(pptx_path)
+        slide_w = prs.slide_width
+        slide_h = prs.slide_height
+
+        for idx, slide in enumerate(prs.slides):
+            slide_gifs = []
+            gif_count = 0
+            for shape in slide.shapes:
+                if shape.shape_type == 13: # PICTURE
+                    try:
+                        if hasattr(shape, 'image') and getattr(shape.image, 'content_type', '') == 'image/gif':
+                            gif_filename = f"slide_{idx+1}_gif_{gif_count}.gif"
+                            gif_path = os.path.join(output_dir, gif_filename)
+                            with open(gif_path, 'wb') as f:
+                                f.write(shape.image.blob)
+
+                            # Verify animated
+                            is_animated = False
+                            try:
+                                with Image.open(gif_path) as img:
+                                    is_animated = hasattr(img, 'n_frames') and img.n_frames > 1
+                            except Exception:
+                                is_animated = True
+
+                            if is_animated:
+                                slide_gifs.append({
+                                    'gif_path': gif_path,
+                                    'left': shape.left / slide_w,
+                                    'top': shape.top / slide_h,
+                                    'width': shape.width / slide_w,
+                                    'height': shape.height / slide_h
+                                })
+                                gif_count += 1
+                            else:
+                                os.remove(gif_path)
+                    except Exception:
+                        pass
+            gif_data.append(slide_gifs)
+    except Exception as e:
+        print(f"GIF extract error: {e}")
+    return gif_data
 
 def convert_pptx_to_pdf(pptx_path, output_dir):
     """Converts PPTX to PDF using LibreOffice headless mode."""
@@ -53,7 +100,7 @@ def convert_pptx_to_pdf(pptx_path, output_dir):
     return pdf_path
 
 def convert_pdf_to_images(pdf_path, output_dir):
-    """Converts PDF pages to PNG images using pdf2image (dpi=120 for memory efficiency)."""
+    """Converts PDF pages to PNG images using pdf2image (dpi=120)."""
     report_progress(35, "正在将 PDF 渲染为高清图片...")
     images = convert_from_path(pdf_path, dpi=120)
     image_paths = []
@@ -78,14 +125,36 @@ async def generate_audio_files(notes, output_dir, voice="zh-CN-XiaoxiaoNeural", 
         report_progress(prog, f"已生成第 {i+1}/{total} 页配音")
     return audio_paths
 
-def compose_video(images, audio_files, output_path):
-    """Composes MP4 video from slide images and audio files using MoviePy."""
-    report_progress(80, "正在合成 MP4 视频...")
+def compose_video(images, audio_files, gif_data, output_path):
+    """Composes MP4 video from slide images, overlaying GIF animations if present."""
+    report_progress(80, "正在合成 MP4 视频 (支持 GIF 动图叠加)...")
     clips = []
-    for img_path, audio_path in zip(images, audio_files):
+    for i, (img_path, audio_path) in enumerate(zip(images, audio_files)):
         audio_clip = AudioFileClip(audio_path)
         duration = max(audio_clip.duration, 1.0)
-        img_clip = ImageClip(img_path).with_duration(duration)
+        bg_clip = ImageClip(img_path).with_duration(duration)
+        w, h = bg_clip.w, bg_clip.h
+
+        slide_gifs = gif_data[i] if i < len(gif_data) else []
+        if slide_gifs:
+            overlay_clips = [bg_clip]
+            for gif in slide_gifs:
+                try:
+                    g_clip = VideoFileClip(gif['gif_path']).with_duration(duration)
+                    if hasattr(g_clip, 'loop'):
+                        g_clip = g_clip.loop(duration=duration)
+                    x_pos = int(gif['left'] * w)
+                    y_pos = int(gif['top'] * h)
+                    gw = max(int(gif['width'] * w), 10)
+                    gh = max(int(gif['height'] * h), 10)
+                    g_clip = g_clip.resized((gw, gh)).with_position((x_pos, y_pos))
+                    overlay_clips.append(g_clip)
+                except Exception as e:
+                    print(f"GIF overlay warning: {e}")
+            img_clip = CompositeVideoClip(overlay_clips, size=(w, h)).with_duration(duration)
+        else:
+            img_clip = bg_clip
+
         img_clip = img_clip.with_audio(audio_clip)
         clips.append(img_clip)
 
@@ -114,6 +183,9 @@ async def process_ppt_to_video(pptx_path, output_path, voice="zh-CN-XiaoxiaoNeur
         if not notes:
             raise ValueError("PPT 文件中未找到幻灯片内容")
 
+        report_progress(10, "正在检测与提取 PPT 中的 GIF 动态图片...")
+        gif_data = extract_all_gifs(pptx_path, temp_dir)
+
         pdf_path = convert_pptx_to_pdf(pptx_path, temp_dir)
         images = convert_pdf_to_images(pdf_path, temp_dir)
         audio_files = await generate_audio_files(notes, temp_dir, voice=voice, rate=rate)
@@ -121,13 +193,13 @@ async def process_ppt_to_video(pptx_path, output_path, voice="zh-CN-XiaoxiaoNeur
         if len(images) != len(audio_files):
             raise ValueError("幻灯片页数与音频数量不一致")
 
-        compose_video(images, audio_files, output_path)
+        compose_video(images, audio_files, gif_data, output_path)
 
     finally:
         shutil.rmtree(temp_dir, ignore_errors=True)
 
 def main():
-    parser = argparse.ArgumentParser(description="Linux PPT to Video Converter Service")
+    parser = argparse.ArgumentParser(description="Linux PPT to Video Converter Service (with GIF support)")
     parser.add_argument("pptx_path", help="输入 PPTX 文件路径")
     parser.add_argument("--output", required=True, help="输出 MP4 视频路径")
     parser.add_argument("--voice", default="zh-CN-XiaoxiaoNeural", help="TTS 发音人")
