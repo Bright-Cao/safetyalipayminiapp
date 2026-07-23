@@ -29,8 +29,10 @@ export default function SafetyAdmin() {
   const [vUploading, setVUploading] = useState(false);
   const [vUploadProgress, setVUploadProgress] = useState(0);
   const [vUploadName, setVUploadName] = useState('');
+  const [vStatusText, setVStatusText] = useState('');
   const videoUploadRef = useRef<HTMLInputElement>(null);
   const xhrRef = useRef<XMLHttpRequest | null>(null);
+  const pollTimerRef = useRef<any>(null);
 
   // ── Question state ──
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -80,32 +82,45 @@ export default function SafetyAdmin() {
       xhrRef.current.abort();
       xhrRef.current = null;
     }
+    if (pollTimerRef.current) {
+      clearInterval(pollTimerRef.current);
+      pollTimerRef.current = null;
+    }
     setVUploading(false);
     setVUploadProgress(0);
     setVUploadName('');
+    setVStatusText('');
   };
 
   const handleVideoFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    // 中止上一次未完成的上传
-    if (xhrRef.current) xhrRef.current.abort();
+
+    resetUploadState();
 
     setVUploading(true);
     setVUploadProgress(0);
     setVUploadName(file.name);
+    setVStatusText('文件上传中...');
     e.target.value = '';
+
+    const isPpt = /\.pptx?$/i.test(file.name);
+    const uploadUrl = isPpt ? '/api/upload/ppt' : '/api/upload/video';
 
     const formData = new FormData();
     formData.append('file', file);
 
     const xhr = new XMLHttpRequest();
     xhrRef.current = xhr;
-    xhr.open('POST', '/api/upload/video');
+    xhr.open('POST', uploadUrl);
     xhr.setRequestHeader('Authorization', `Bearer ${localStorage.getItem('token')}`);
 
     xhr.upload.onprogress = (ev) => {
-      if (ev.lengthComputable) setVUploadProgress(Math.round((ev.loaded / ev.total) * 100));
+      if (ev.lengthComputable) {
+        const percent = Math.round((ev.loaded / ev.total) * (isPpt ? 20 : 100));
+        setVUploadProgress(percent);
+        if (isPpt) setVStatusText(`PPT 上传中... ${Math.round((ev.loaded / ev.total) * 100)}%`);
+      }
     };
 
     xhr.onload = () => {
@@ -113,19 +128,59 @@ export default function SafetyAdmin() {
       try {
         const res = JSON.parse(xhr.responseText);
         if (res.success) {
-          setVModal(prev => ({ ...prev, file_id: res.file_id }));
+          if (isPpt && res.taskId) {
+            // PPT 上传成功，开始轮询后台转换状态
+            startPptStatusPolling(res.taskId);
+          } else {
+            setVModal(prev => ({ ...prev, file_id: res.file_id }));
+            setVUploading(false);
+            setVStatusText('');
+          }
         } else {
           alert('上传失败：' + (res.message || '服务器错误'));
+          setVUploading(false);
         }
       } catch (_) {
         alert(`上传失败（服务器返回异常，状态码: ${xhr.status}）`);
+        setVUploading(false);
       }
-      setVUploading(false);
     };
 
     xhr.onerror = () => { xhrRef.current = null; alert('网络错误，上传失败'); setVUploading(false); };
     xhr.onabort = () => { xhrRef.current = null; setVUploading(false); setVUploadProgress(0); };
     xhr.send(formData);
+  };
+
+  const startPptStatusPolling = (taskId: string) => {
+    setVStatusText('已开始转换 PPT，准备生成语音和视频...');
+    pollTimerRef.current = setInterval(async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const r = await fetch(`/api/upload/ppt-status/${taskId}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        const d = await r.json();
+        if (d.success && d.task) {
+          const task = d.task;
+          setVUploadProgress(task.progress || 0);
+          setVStatusText(task.status || '转换处理中...');
+
+          if (task.completed) {
+            clearInterval(pollTimerRef.current);
+            pollTimerRef.current = null;
+            setVUploading(false);
+            if (task.error) {
+              alert('PPT 转换视频失败: ' + task.error);
+            } else if (task.file_id) {
+              setVModal(prev => ({ ...prev, file_id: task.file_id }));
+              alert('🎉 PPT 已成功转换为课程视频！');
+            }
+          }
+        }
+      } catch (e) {
+        console.error('Polling error:', e);
+      }
+    }, 2000);
   };
 
   const saveVideo = async () => {
@@ -491,9 +546,9 @@ export default function SafetyAdmin() {
             <input className="input-field" style={{ marginBottom: '0.85rem' }} value={vModal.title || ''}
               onChange={e => setVModal({ ...vModal, title: e.target.value })} placeholder="例：安全监护人培训第一课" />
 
-            {/* 视频文件上传 */}
-            <label className="input-label">视频文件 *</label>
-            <input ref={videoUploadRef} type="file" accept="video/*,.mp4,.mov,.avi,.mkv,.m4v,.webm" style={{ display: 'none' }} onChange={handleVideoFileSelect} />
+            {/* 视频 / PPT 文件上传 */}
+            <label className="input-label">课程视频 / PPT 文稿 *</label>
+            <input ref={videoUploadRef} type="file" accept="video/*,.mp4,.mov,.avi,.mkv,.m4v,.webm,.pptx,.ppt" style={{ display: 'none' }} onChange={handleVideoFileSelect} />
             <div style={{ marginBottom: '0.85rem' }}>
               {vModal.file_id ? (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.65rem 1rem',
@@ -509,14 +564,17 @@ export default function SafetyAdmin() {
                     cursor: vUploading ? 'not-allowed' : 'pointer', display: 'flex', flexDirection: 'column',
                     alignItems: 'center', gap: '0.4rem', fontSize: '0.9rem', transition: 'all 0.2s' }}>
                   <Upload size={24} color="var(--primary-color)" />
-                  {vUploading ? `上传中... ${vUploadProgress}%` : '点击选择 MP4 视频文件'}
-                  <span style={{ fontSize: '0.75rem' }}>支持最大 500MB</span>
+                  {vUploading ? `${vStatusText || '处理中...'} (${vUploadProgress}%)` : '点击选择 MP4 视频 或 PPTX 演示文稿'}
+                  <span style={{ fontSize: '0.75rem' }}>支持 MP4/MOV 或 PPTX（自动带配音合成为视频）</span>
                 </button>
               )}
-              {/* 上传进度条 */}
+              {/* 上传 / 转换进度条 */}
               {vUploading && (
-                <div style={{ marginTop: '0.5rem', height: '4px', background: 'rgba(255,255,255,0.1)', borderRadius: '2px', overflow: 'hidden' }}>
-                  <div style={{ width: `${vUploadProgress}%`, height: '100%', background: 'var(--primary-color)', transition: 'width 0.2s' }} />
+                <div style={{ marginTop: '0.5rem' }}>
+                  <div style={{ height: '6px', background: 'rgba(255,255,255,0.1)', borderRadius: '3px', overflow: 'hidden' }}>
+                    <div style={{ width: `${vUploadProgress}%`, height: '100%', background: 'var(--primary-color)', transition: 'width 0.3s' }} />
+                  </div>
+                  {vStatusText && <div style={{ fontSize: '0.75rem', color: 'var(--primary-color)', marginTop: '4px', textAlign: 'center' }}>{vStatusText}</div>}
                 </div>
               )}
             </div>
